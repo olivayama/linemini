@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -eu
+
+if [ "$1" = create ]; then
+  goose -dir="./migrations" create "$2" sql
+elif [ "$1" = validate ]; then
+  goose -dir="./migrations" -v validate
+else
+  goose \
+    -dir="./migrations" \
+    mysql \
+    "$MYSQL_USER:$MYSQL_PASSWORD@tcp($MYSQL_HOST:$MYSQL_PORT)/$MYSQL_DATABASE" \
+    "$@"
+fi

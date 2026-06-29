@@ -1,0 +1,14 @@
+.git
+.vscode
+.github
+
+node_modules
+apps/*/node_modules
+
+*/dist
+*/.next
+
+devtools
+infrastructures
+migrations
+proto

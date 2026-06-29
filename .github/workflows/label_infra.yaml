@@ -1,0 +1,35 @@
+name: Label infra PRs
+
+# infrastructures/ 配下に変更を含む PR に「infra（全envデプロイ後マージ）」ラベルを自動付与する。
+# インフラのデプロイは手動・別管理(独立 PR でレビュー → 全 env デプロイ → マージ)なので、
+# 混ぜ込み事故を防ぐためラベルで可視化する。
+#
+# 起動は on.paths でサーバ側 diff 評価により絞る。infrastructures/ の外のファイル(pnpm-lock 等)を
+# 一緒に触っていても infrastructures/ を含めば起動する。`gh pr view --json files` の取得上限による
+# 取りこぼし(変更ファイルが多い PR)を避けられ、ジョブ内の grep も不要になる。
+# 付与のみで除去はしない: PR 途中で infra 変更を取り下げてもラベルは残るが、稀なので許容する。
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "infrastructures/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-infra:
+    name: Add infra label
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # ラベルが無い派生案件でも動くよう、無ければ作る(--force で冪等)
+          gh label create "infra（全envデプロイ後マージ）" --repo ${{ github.repository }} \
+            --color BFD4F2 --description "infrastructures/ を含む PR(デプロイは手動・別管理)" --force || true
+          gh pr edit ${{ github.event.number }} --repo ${{ github.repository }} --add-label "infra（全envデプロイ後マージ）"

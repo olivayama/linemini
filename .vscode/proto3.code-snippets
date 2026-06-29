@@ -1,0 +1,7 @@
+{
+  "Define RPC": {
+    "prefix": "rpc",
+    "body": ["rpc $1($1Request) returns ($1Response);"],
+    "description": "Define RPC"
+  }
+}

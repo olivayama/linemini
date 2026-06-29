@@ -1,0 +1,216 @@
+syntax = "proto3";
+
+package services.image.v1;
+
+import "services/image/v1/image.proto";
+import "stdutils/paging.proto";
+
+service ImageService {
+  /**
+   * 画像をアップロードする
+   *
+   * @throws Unauthenticated admin_secret_token がない && 管理画面ログイン中ではない場合
+   */
+  rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse);
+  /**
+   * 画像をアップロードする
+   * ブラウザ用のクライアントが client streaming をサポートするまでの間の暫定的なエンドポイント
+   *
+   * @throws Unauthenticated admin_secret_token がない && 管理画面ログイン中ではない場合
+   */
+  rpc TmpUploadImage(TmpUploadImageRequest) returns (TmpUploadImageResponse);
+  /**
+   * 画像の一覧を取得する
+   *
+   * @throws Unauthenticated 管理画面ログイン中ではない場合
+   */
+  rpc ListImages(ListImagesRequest) returns (ListImagesResponse);
+  /**
+   * id で 画像の情報を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc GetImageById(GetImageByIdRequest) returns (GetImageByIdResponse);
+  /**
+   * 画像を更新する
+   *
+   * @throws Unauthenticated admin_secret_token がない && 管理画面ログイン中ではない場合
+   */
+  rpc UpdateUploadImage(stream UpdateUploadImageRequest) returns (UpdateUploadImageResponse);
+  /**
+   * 画像を更新する
+   * ブラウザ用のクライアントが client streaming をサポートするまでの間の暫定的なエンドポイント
+   *
+   * @throws Unauthenticated admin_secret_token がない && 管理画面ログイン中ではない場合
+   */
+  rpc UpdateTmpUploadImage(UpdateTmpUploadImageRequest) returns (UpdateTmpUploadImageResponse);
+  /**
+   * 画像タグを作成する
+   *
+   * @throws Unauthenticated 管理画面ログイン中ではない場合
+   * @throws AlreadyExists 既に同じ管理名の画像タグが存在する場合
+   */
+  rpc CreateImageTag(CreateImageTagRequest) returns (CreateImageTagResponse);
+  /**
+   * id で 画像タグの情報を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   * @throws NotFound 画像タグが見つからない場合
+   */
+  rpc GetImageTagById(GetImageTagByIdRequest) returns (GetImageTagByIdResponse);
+  /**
+   * 管理名から画像タグを取得する
+   *
+   * @throws Unauthenticated admin_secret_token がない && 管理画面ログイン中ではない場合
+   */
+  rpc GetImageTagByAdminName(GetImageTagByAdminNameRequest) returns (GetImageTagByAdminNameResponse);
+  /**
+   * 画像タグの一覧を取得する
+   *
+   * @throws Unauthenticated 管理画面ログイン中ではない場合
+   */
+  rpc ListImageTags(ListImageTagsRequest) returns (ListImageTagsResponse);
+  /**
+   * 画像タグ を更新する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   * @throws NotFound 画像タグ が見つからない場合
+   * @throws FailedPrecondition 編集不可の場合
+   * @throws AlreadyExists 既に同じ管理名の画像タグが存在する場合
+   */
+  rpc UpdateImageTag(UpdateImageTagRequest) returns (UpdateImageTagResponse);
+}
+
+// UploadImage
+
+message UploadImageRequest {
+  optional string admin_secret_token = 1;
+  Image image = 2;
+}
+
+message UploadImageResponse {
+  Image image = 1;
+}
+
+// TmpUploadImage
+
+message TmpUploadImageRequest {
+  optional string admin_secret_token = 1;
+  Image image = 2;
+}
+
+message TmpUploadImageResponse {
+  Image image = 1;
+}
+
+// ListImages
+
+message ListImagesRequest {
+  optional string image_tag_id = 1;
+  stdutils.PagingOffsetRequest paging = 2;
+}
+
+message ListImagesResponse {
+  repeated Image images = 1;
+  stdutils.PagingOffsetResponse paging = 2;
+}
+
+// GetImageById
+
+// id で 画像 の情報を取得するリクエスト
+message GetImageByIdRequest {
+  // 画像ID
+  string image_id = 1;
+}
+
+// id で 画像 の情報を取得したレスポンス
+message GetImageByIdResponse {
+  // 画像
+  Image image = 1;
+}
+
+// UpdateUploadImage
+
+message UpdateUploadImageRequest {
+  Image image = 1;
+  optional bool replace_image = 2;
+}
+
+message UpdateUploadImageResponse {
+  Image image = 1;
+}
+
+// UpdateTmpUploadImage
+
+message UpdateTmpUploadImageRequest {
+  Image image = 1;
+  optional bool replace_image = 2;
+}
+
+message UpdateTmpUploadImageResponse {
+  Image image = 1;
+}
+
+// CreateImageTag
+
+// 画像タグ を作成するリクエスト
+message CreateImageTagRequest {
+  // 画像タグ
+  ImageTag image_tag = 1;
+}
+
+// 画像タグ を作成したレスポンス
+message CreateImageTagResponse {
+  // 画像タグ
+  ImageTag image_tag = 1;
+}
+
+// GetImageTagById
+
+// id で 画像 の情報を取得するリクエスト
+message GetImageTagByIdRequest {
+  // 画像タグID
+  string image_tag_id = 1;
+}
+
+// id で 画像 の情報を取得したレスポンス
+message GetImageTagByIdResponse {
+  // 画像タグ
+  ImageTag image_tag = 1;
+}
+
+// GetImageTagByAdminName
+
+message GetImageTagByAdminNameRequest {
+  optional string admin_secret_token = 1;
+  string admin_name = 2;
+}
+
+message GetImageTagByAdminNameResponse {
+  ImageTag image_tag = 1;
+}
+
+// ListImageTags
+
+message ListImageTagsRequest {
+  stdutils.PagingOffsetRequest paging = 1;
+}
+
+message ListImageTagsResponse {
+  repeated ImageTag image_tags = 1;
+  stdutils.PagingOffsetResponse paging = 2;
+}
+
+// UpdateImageTag
+
+// 画像タグ を更新するリクエスト
+message UpdateImageTagRequest {
+  // 画像タグ
+  ImageTag image_tag = 1;
+}
+
+//  画像タグ を更新したレスポンス
+message UpdateImageTagResponse {
+  // 画像タグ
+  ImageTag image_tag = 1;
+}

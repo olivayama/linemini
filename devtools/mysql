@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -eu
+
+case "local" in
+  local)
+    docker compose exec mysql mysql
+    ;;
+  *)
+    echo "not supported yet." >> /dev/stderr
+    exit 1
+    ;;
+esac
+
+

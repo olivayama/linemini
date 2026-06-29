@@ -1,0 +1,46 @@
+name: Create a pull request for dev release.
+
+on:
+  push:
+    # push 検知の対象ブランチ
+    branches: [main]
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR_TITLE: Dev deploy
+      MAIN_BRANCH: main
+      BASE_BRANCH: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # dev リリース用 PR を作成
+      - name: Create release pr
+        run: |
+          # 既に PR がある場合は PR を作成しない
+          count=$(gh pr list --search "${{ env.PR_TITLE }} in:title" --base ${{ env.BASE_BRANCH }} | wc -l)
+          if [ "$count" -ne 0 ]; then
+            echo "Count is not 0..."
+            exit 0
+          fi
+
+          # BASE_BRANCH が存在しない場合は作成しない
+          git fetch origin ${{ env.BASE_BRANCH }} || {
+            echo "Branch ${{ env.BASE_BRANCH }} does not exist..."
+            exit 0
+          }
+
+          # 差分がない場合は PR を作成しない
+          git fetch origin ${{ env.MAIN_BRANCH }}
+          diff=$(git diff origin/${{ env.MAIN_BRANCH }} origin/${{ env.BASE_BRANCH }})
+          if [ -z "$diff" ]; then
+            echo "No difference between ${{ env.MAIN_BRANCH }} and ${{ env.BASE_BRANCH }}..."
+            exit 0
+          fi
+
+          # PR を作成
+          gh pr create --base ${{ env.BASE_BRANCH }} --title "${{ env.PR_TITLE }}" --body ""

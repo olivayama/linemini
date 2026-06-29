@@ -1,0 +1,15 @@
+export const columns = {
+  administrator: ['deactivatedAt', 'email', 'id'],
+  administratorInvitation: ['acceptedAt', 'administratorId', 'expirationDate', 'hashedToken', 'invitedAt'],
+  administratorLoginCredential: ['administratorId', 'changedAt', 'hashedPassword', 'initializedAt'],
+  featureToggle: ['settings', 'userId'],
+  gooseDbVersion: ['id', 'isApplied', 'tstamp', 'versionId'],
+  image: ['adminName', 'createdAt', 'id', 'imageUrl', 'updatedAt'],
+  imageTag: ['adminName', 'createdAt', 'id', 'isLocked', 'updatedAt'],
+  imageTagRel: ['imageId', 'imageTagId'],
+  user: ['customerNumber', 'firstAccessPath', 'id', 'referrer', 'signedUpAt'],
+  userLineAccount: ['uid', 'userId'],
+  userProfile: ['birthday', 'initialQuestionnaireAnswers', 'prefectureCode', 'sexCode', 'userId'],
+  userServiceAgreement: ['agreedAt', 'userId', 'version'],
+  userTutorialCompletion: ['completedAt', 'userId', 'version'],
+} as const

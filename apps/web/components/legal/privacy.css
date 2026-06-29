@@ -1,0 +1,29 @@
+.privacy-wrapper h1 {
+  font-size: 20px !important;
+}
+.privacy-wrapper h2 {
+  font-size: 18px !important;
+  counter-increment: h2;
+}
+.privacy-wrapper h2::before {
+  content: counter(h2) '）';
+}
+.privacy-wrapper h3 {
+  font-size: 16px !important;
+}
+.privacy-wrapper h4 {
+  margin-top: 14px !important;
+}
+
+.privacy-wrapper > ol > li {
+  list-style-type: lower-latin;
+}
+.privacy-wrapper > ol > li > ol > li {
+  list-style-type: lower-roman;
+}
+.privacy-wrapper > ol > li > ol > li > ol > li {
+  list-style-type: decimal;
+}
+.privacy-wrapper > ol > li > ol > li > ol > li > ol > li {
+  list-style-type: lower-latin;
+}

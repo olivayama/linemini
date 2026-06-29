@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker compose exec mysql cat /etc/mysql/conf.d/my.cnf | grep 'database=' | cut -d= -f2

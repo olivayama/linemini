@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+*.tsbuildinfo
+*.swp
+
+# Environment variables
+.env
+
+# AI agent のワークスペースローカル作業領域(cache/state/share, XDG準拠)
+.agents/
+
+# Playwright (E2E)
+apps/web/e2e/.auth/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/blob-report/

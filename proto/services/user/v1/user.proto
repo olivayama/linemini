@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package services.user.v1;
+
+import "google/protobuf/timestamp.proto";
+import "stdutils/date_only.proto";
+
+// ユーザー
+message User {
+  // ユーザー ID
+  string id = 1;
+  // お客様番号
+  string customer_number = 2;
+  // ユーザーがサインアップした日時
+  google.protobuf.Timestamp signed_up_at = 3;
+  // リファラー
+  optional string referrer = 4;
+  // 初回アクセスパス
+  string first_access_path = 5;
+  // LINE アカウント
+  UserLineAccount line_account = 6;
+  // ユーザープロフィール
+  optional UserProfile profile = 7;
+  // 利用規約同意履歴のリスト
+  repeated UserServiceAgreement service_agreements = 8;
+  // チュートリアル完了履歴のリスト
+  repeated UserTutorialCompletion tutorial_completions = 9;
+}
+
+// LINE アカウント
+message UserLineAccount {
+  // LINE アカウント UID
+  string uid = 1;
+}
+
+// ユーザープロフィール
+message UserProfile {
+  // 誕生日
+  optional stdutils.DateOnly birthday = 1;
+  // 性別コード。0: その他, 1: 男性, 2: 女性
+  optional int32 sex_code = 2;
+  // 都道府県コード。
+  optional int32 prefecture_code = 3;
+  // アンケート回答
+  message Answer {
+    string question = 1;
+    repeated string answer = 2;
+  }
+  message InitialQuestionnaireAnswers {
+    repeated Answer answers = 1;
+  }
+  // 初回アクセス時のアンケート回答
+  optional InitialQuestionnaireAnswers initial_questionnaire_answers = 4;
+}
+
+// 利用規約同意履歴
+message UserServiceAgreement {
+  // 同意した利用規約のバージョン
+  string version = 1;
+  // 同意した日時
+  google.protobuf.Timestamp agreed_at = 2;
+}
+
+// チュートリアル完了履歴
+message UserTutorialCompletion {
+  // 同意したチュートリアルのバージョン
+  string version = 1;
+  // 同意完了日時
+  google.protobuf.Timestamp completed_at = 2;
+}

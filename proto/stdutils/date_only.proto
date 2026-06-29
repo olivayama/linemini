@@ -1,0 +1,9 @@
+syntax = 'proto3';
+
+package stdutils;
+
+message DateOnly {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day_of_month = 3;
+}

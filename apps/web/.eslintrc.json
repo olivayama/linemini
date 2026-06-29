@@ -1,0 +1,39 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "unused-imports"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        },
+        "extendDefaults": true
+      }
+    ],
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/strict-boolean-expressions": [
+      "error",
+      {
+        "allowString": false,
+        "allowNumber": false,
+        "allowNullableObject": false,
+        "allowNullableBoolean": true,
+        "allowNullableString": false,
+        "allowNullableNumber": false,
+        "allowNullableEnum": false,
+        "allowAny": false,
+        "allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing": false
+      }
+    ]
+  }
+}

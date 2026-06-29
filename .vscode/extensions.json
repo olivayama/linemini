@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    // protobuf
+    "bufbuild.vscode-buf",
+    "pbkit.vscode-pbkit",
+    // lint/format
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    // tailwind
+    "bradlc.vscode-tailwindcss",
+    // markdown
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    // spell checker
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

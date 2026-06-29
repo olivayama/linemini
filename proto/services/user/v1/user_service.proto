@@ -1,0 +1,235 @@
+syntax = "proto3";
+
+package services.user.v1;
+
+import "services/user/v1/user.proto";
+import "stdutils/csv.proto";
+import "stdutils/paging.proto";
+import "stdutils/year_month.proto";
+
+service UserService {
+  /**
+   * LINE OpenID でユーザー登録もしくはログインする
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   * @throws FailedPrecondition サービス同意バージョンの指定なしでユーザーを作成しようとした場合
+   */
+  rpc SignInOrUpByLineOpenId(SignInOrUpByLineOpenIdRequest) returns (SignInOrUpByLineOpenIdResponse);
+  /**
+   * アクセストークンに紐付くユーザーのセッションを取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc GetMyUserSession(GetMyUserSessionRequest) returns (GetMyUserSessionResponse);
+  /**
+   * アクセストークンに紐付くユーザーの情報を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc GetMyUser(GetMyUserRequest) returns (GetMyUserResponse);
+  /**
+   * id でユーザーの情報を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse);
+  /**
+   * customer_number でユーザーの情報を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc GetUserByCustomerNumber(GetUserByCustomerNumberRequest) returns (GetUserByCustomerNumberResponse);
+  /**
+   * ユーザーの一覧を取得する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+  /**
+   * ユーザーの一覧を CSV で出力する
+   *
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc ExportUsersCSV(ExportUsersCSVRequest) returns (stream ExportUsersCSVResponse);
+  /**
+   * ユーザーを削除する
+   *
+   * @throws NotFound ユーザーが見つからなかった場合
+   * @throws Unimplemented 無効な操作だった場合
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc DeleteMyUser(DeleteMyUserRequest) returns (DeleteMyUserResponse);
+  /**
+   * id でユーザーを削除する
+   *
+   * @throws NotFound ユーザーが見つからなかった場合
+   * @throws Unimplemented 無効な操作だった場合
+   * @throws Unauthenticated 認証に失敗した場合
+   */
+  rpc DeleteUserById(DeleteUserByIdRequest) returns (DeleteUserByIdResponse);
+  /**
+   * プロフィールをセットする
+   *  @throws NotFound ユーザーが見つからなかった場合
+   *  @throws Unauthenticated ログインしていないユーザーが呼び出した場合
+   */
+  rpc SetMyProfile(SetMyProfileRequest) returns (SetMyProfileResponse);
+  /**
+   * 規約に同意する
+   *
+   * @throws Unauthenticated ログインしていないユーザーが呼び出した場合
+   */
+  rpc AgreeToService(AgreeToServiceRequest) returns (AgreeToServiceResponse);
+  /**
+   * チュートリアルを完了する
+   *
+   * @throws Unauthenticated ログインしていないユーザーが呼び出した場合
+   */
+  rpc CompleteTutorial(CompleteTutorialRequest) returns (CompleteTutorialResponse);
+}
+
+// SignInOrUpByLineOpenId
+
+message SignInOrUpByLineOpenIdRequest {
+  // サインアップ時にのみ指定するパラメータ
+  message SignUpParams {
+    // referrerクエリの値
+    optional string referrer = 1;
+    // 初回アクセスパス
+    string first_access_path = 2;
+    // 同意する利用規約のバージョン
+    string service_agreement_version = 3;
+  }
+  // LINE OpenID トークン
+  string line_open_id_token = 1;
+  // サインアップ時にのみ指定するパラメータ
+  optional SignUpParams sign_up_params = 2;
+}
+
+message SignInOrUpByLineOpenIdResponse {
+  // ユーザー ID
+  string user_id = 1;
+  // LINE アカウント UID
+  string user_line_account_uid = 2;
+  // アクセストークン
+  string access_token = 3;
+}
+
+// GetMyUserSession
+
+message GetMyUserSessionRequest {
+  // アクセストークン
+  string access_token = 1;
+}
+
+message GetMyUserSessionResponse {
+  // ユーザー ID
+  string user_id = 1;
+  // アクセストークン
+  string access_token = 2;
+}
+
+// GetMyUser
+
+message GetMyUserRequest {}
+
+message GetMyUserResponse {
+  // ユーザー情報
+  User user = 1;
+}
+
+// GetUserById
+
+message GetUserByIdRequest {
+  string user_id = 1;
+}
+
+message GetUserByIdResponse {
+  User user = 1;
+}
+
+// GetUserByCustomerNumber
+
+message GetUserByCustomerNumberRequest {
+  string customer_number = 1;
+}
+
+message GetUserByCustomerNumberResponse {
+  User user = 1;
+}
+
+// ListUsers
+
+message ListUsersRequest {
+  stdutils.PagingCursorRequest paging = 1;
+  optional string customer_number_prefix = 2;
+  optional stdutils.YearMonth year_month = 3;
+}
+
+message ListUsersResponse {
+  repeated User users = 1;
+  stdutils.PagingCursorResponse paging = 2;
+}
+
+// ExportUsersCSV
+
+message ExportUsersCSVRequest {
+  optional stdutils.YearMonth year_month = 1;
+  optional string customer_number_prefix = 2;
+}
+
+message ExportUsersCSVResponse {
+  stdutils.ExportCSVResponse csv = 1;
+}
+
+// DeleteMyUser
+
+message DeleteMyUserRequest {}
+
+message DeleteMyUserResponse {}
+
+// DeleteUserById
+
+message DeleteUserByIdRequest {
+  // 管理シークレットトークン。指定すべき値は AWS Secrets Manager を確認する
+  string admin_secret_token = 1;
+  // ユーザー ID
+  string user_id = 2;
+}
+
+message DeleteUserByIdResponse {}
+
+// SetMyProfile
+
+message SetMyProfileRequest {
+  // プロフィール
+  UserProfile profile = 1;
+}
+
+message SetMyProfileResponse {
+  // プロフィール
+  UserProfile profile = 1;
+}
+
+// AgreeToService
+
+message AgreeToServiceRequest {
+  // 同意する利用規約のバージョン
+  string version = 1;
+}
+
+message AgreeToServiceResponse {
+  // サービス同意のリスト
+  repeated UserServiceAgreement service_agreements = 1;
+}
+
+// CompleteTutorial
+
+message CompleteTutorialRequest {
+  // 完了したチュートリアルのバージョン
+  string version = 1;
+}
+
+message CompleteTutorialResponse {
+  // チュートリアルの完了履歴のリスト
+  repeated UserTutorialCompletion tutorial_completions = 1;
+}

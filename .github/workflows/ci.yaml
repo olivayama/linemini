@@ -1,0 +1,248 @@
+on:
+  pull_request:
+    branches-ignore:
+      - dev
+      - stg
+      - prd
+
+jobs:
+  node_modules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # ref. cached pnpm install https://github.com/pnpm/action-setup/blob/v2.4.0/README.md#use-cache-to-reduce-installation-time
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+  lint:
+    needs: node_modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Restore pnpm cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint .proto
+        run: pnpm run lint:proto
+
+      - name: Check type
+        run: pnpm run tsc
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Check format
+        run: pnpm run format
+
+      - name: Check testing doc drift (api)
+        run: make gen/doc/testing/api && git diff --exit-code docs/testing/api/
+
+      - name: Check testing doc drift (web)
+        run: make gen/doc/testing/web && git diff --exit-code docs/testing/web/
+
+  test:
+    needs: node_modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Restore pnpm cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Unit Tests
+        run: pnpm run test
+
+  test-ix:
+    needs: node_modules
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.44-debian
+        ports:
+          - 13306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 5s
+          --health-timeout 1s
+          --health-retries 20
+      minio:
+        # NOTE: GitHub Actions の service で command が指定できないため
+        #       サポートされるまでは、指定なしで9000番を listen してくれる外部の image を利用する
+        # https://stackoverflow.com/questions/64031598/creating-a-minios3-container-inside-a-github-actions-yml-file
+        image: lazybit/minio
+        options: --name=minio --health-cmd "curl http://localhost:9000/minio/health/live"
+        ports:
+          - 19000:9000
+        env:
+          MINIO_ACCESS_KEY: access_key_id_1234
+          MINIO_SECRET_KEY: secret_access_key_1234
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install mc
+        run: curl -Lo /usr/local/bin/mc https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x /usr/local/bin/mc
+
+      - name: Setup minio
+        run: mc alias set minio http://localhost:19000 access_key_id_1234 secret_access_key_1234 && mc mb minio/public && mc mb minio/private
+
+      - name: Install goose
+        run: curl -Lo /usr/local/bin/goose "https://github.com/pressly/goose/releases/download/$GOOSE_VERSION/goose_linux_x86_64" && chmod +x /usr/local/bin/goose
+        env:
+          GOOSE_VERSION: v3.10.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Restore pnpm cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Validate migrations
+        run: goose -dir migrations -v validate
+
+      - name: Create schema
+        run: mysql -h "$MYSQL_HOST" -P "$MYSQL_PORT" -u "$MYSQL_USER" -e "CREATE DATABASE $MYSQL_DATABASE"
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 13306
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ""
+          MYSQL_DATABASE: app
+
+      - name: Migrate schema
+        run: ./devtools/goose up
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 13306
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ""
+          MYSQL_DATABASE: app
+
+      - name: Integration Tests
+        run: pnpm run test-ix
+        env:
+          APP_ENV: localhost
+          ADMIN_SECRET_TOKEN: abc
+          CORS_ORIGINS: https://localhost
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 13306
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ""
+          MYSQL_DATABASE: app
+          SESSION_JWT_ISSUER: app
+          SESSION_JWT_AUDIENCE: app
+          SESSION_JWT_SECRET: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ADMIN_SESSION_JWT_ISSUER: app
+          ADMIN_SESSION_JWT_AUDIENCE: app
+          ADMIN_SESSION_JWT_SECRET: "baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ADMIN_LOGIN_CREDENTIAL_PEPPER: abc
+          ADMIN_INVITATION_PEPPER: abc
+          S3_PUBLIC_BUCKET: public
+          S3_PUBLIC_BUCKET_BASE_URL: http://localhost:19000/public
+          S3_ENDPOINT: "http://localhost:19000" # to use minio
+          S3_FORCE_PATH_STYLE: "1" # to use minio
+          SES_FROM: d@opt.ne.jp
+          SES_ENDPOINT: "http://aws-ses:8005"
+          AWS_REGION: ap-northeast-1
+          AWS_ACCESS_KEY_ID: access_key_id_1234
+          AWS_SECRET_ACCESS_KEY: secret_access_key_1234

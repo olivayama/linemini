@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package services.administrator.v1;
+
+import "services/administrator/v1/administrator.proto";
+
+service AdministratorService {
+  /**
+   *
+   * 管理者を作成する
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   *
+   */
+  rpc CreateAdministrator(CreateAdministratorRequest) returns (CreateAdministratorResponse);
+  /**
+   *
+   * 管理者に招待メールを送る
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   *
+   */
+  rpc SendAdministratorInvitation(SendAdministratorInvitationRequest) returns (SendAdministratorInvitationResponse);
+  /**
+   *
+   * 管理者を停止する
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   *
+   */
+  rpc DeactivateAdministrator(DeactivateAdministratorRequest) returns (DeactivateAdministratorResponse);
+  /**
+   *
+   * ログインする
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   *
+   */
+  rpc SignInAsAdministrator(SignInAsAdministratorRequest) returns (SignInAsAdministratorResponse);
+  /**
+   *
+   * 自身の管理者セッション取得する
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   *
+   */
+  rpc GetMyAdministratorSession(GetMyAdministratorSessionRequest) returns (GetMyAdministratorSessionResponse);
+  /**
+   *
+   * 自身のパスワードを更新する
+   *
+   * @throws Unauthenticated 管理者として認証されていない場合
+   * @throws InvalidArgument 新しいパスワードが不正な場合
+   *
+   */
+  rpc UpdateMyAdministratorPassword(UpdateMyAdministratorPasswordRequest) returns (UpdateMyAdministratorPasswordResponse);
+}
+
+// CreateAdministrator
+
+message CreateAdministratorRequest {
+  string email = 1;
+}
+
+message CreateAdministratorResponse {
+  Administrator administrator = 1;
+}
+
+// SendAdministratorInvitation
+
+message SendAdministratorInvitationRequest {
+  string administrator_id = 1;
+}
+
+message SendAdministratorInvitationResponse {}
+
+// DeactivateAdministrator
+
+message DeactivateAdministratorRequest {
+  string administrator_id = 1;
+}
+
+message DeactivateAdministratorResponse {
+  Administrator administrator = 1;
+}
+
+// SignInAsAdministrator
+
+message SignInAsAdministratorRequest {
+  string email = 1;
+  string password = 2;
+  optional string invitation_token = 3;
+}
+
+message SignInAsAdministratorResponse {
+  string administrator_id = 1;
+  string access_token = 2;
+}
+
+// GetMyAdministratorSession
+
+message GetMyAdministratorSessionRequest {
+  string access_token = 1;
+}
+
+message GetMyAdministratorSessionResponse {
+  string administrator_id = 1;
+  string access_token = 2;
+}
+
+// UpdateMyAdministratorPassword
+
+message UpdateMyAdministratorPasswordRequest {
+  string current_password = 1;
+  string new_password = 2;
+}
+
+message UpdateMyAdministratorPasswordResponse {
+  Administrator administrator = 1;
+}

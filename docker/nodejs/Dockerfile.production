@@ -1,0 +1,65 @@
+FROM node:20.17.0-slim AS build
+ARG PNPM_VERSION=9.8.0
+
+# Distroless Tips:
+# - healthcheck で使うための wget を busybox からコピーする
+# - Node.js は PID 1 で上手く動かず、signal を受け取れなかったりするため tini を使う
+#   - https://zenn.dev/yami_beta/articles/333ba1d0fff4d7
+
+# ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-static /distroless/tini-static
+# は distroless 内で行なうとエラーが出るので、ここでやって、COPY でコピーする
+# > failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "/bin/sh": stat /bin/sh: no such file or directory: unknown
+
+ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-static /distroless/tini-static
+RUN chmod +x /distroless/tini-static
+COPY --from=busybox:1.36.0-musl /bin/wget /distroless/wget
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN npm i -g pnpm@${PNPM_VERSION}
+
+# Install dependencies
+COPY ./package.json ./
+COPY ./pnpm-workspace.yaml ./
+COPY ./pnpm-lock.yaml ./
+# COPY ./patches/ ./patches/
+COPY ./apps/api/package.json ./apps/api/
+COPY ./apps/web/package.json ./apps/web/
+RUN pnpm i --prod=false
+
+# Copy project files
+COPY --link . .
+
+# Build
+RUN pnpm run build
+
+# NOTE: pnpm prune が monorepo に対応することで、このステップは簡略化できる
+# > https://pnpm.io/cli/prune
+# > The prune command does not support recursive execution on a monorepo currently. To only install production-dependencies in a monorepo node_modules folders can be deleted and then re-installed with pnpm install --prod.
+# Install production only dependencies
+RUN rm -fr node_modules
+RUN rm -fr apps/*/node_modules
+RUN pnpm i --prod
+
+# Stage 'web'
+FROM gcr.io/distroless/nodejs20-debian12 AS web
+COPY --from=build /distroless/wget /usr/bin/wget
+COPY --from=build /distroless/tini-static /usr/bin/tini-static
+WORKDIR /app/apps/web
+COPY --from=build /app /app
+EXPOSE 4001
+ENTRYPOINT ["tini-static", "--", "/nodejs/bin/node"]
+CMD ["node_modules/next/dist/bin/next", "start"]
+
+# Stage 'api'
+FROM gcr.io/distroless/nodejs20-debian12 AS api
+COPY --from=build /distroless/wget /usr/bin/wget
+COPY --from=build /distroless/tini-static /usr/bin/tini-static
+WORKDIR /app/apps/api
+COPY --from=build /app /app
+EXPOSE 4000
+ENTRYPOINT ["tini-static", "--", "/nodejs/bin/node"]
+CMD ["dist/server.js"]

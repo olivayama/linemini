@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+mysql -h "$MYSQL_HOST" -P "$MYSQL_PORT" -u "$MYSQL_USER" -e "DROP DATABASE IF EXISTS $MYSQL_DATABASE"
+mysql -h "$MYSQL_HOST" -P "$MYSQL_PORT" -u "$MYSQL_USER" -e "CREATE DATABASE $MYSQL_DATABASE"
+./devtools/goose up
+sleep Infinity

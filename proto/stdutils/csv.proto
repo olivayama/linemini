@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package stdutils;
+
+message ExportCSVResponse {
+  message Metadata {
+    int32 estimated_chunk_count = 1;
+  }
+
+  oneof payload {
+    Metadata metadata = 1;
+    bytes chunk = 2;
+  }
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package services.image.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Image {
+  string id = 1;
+  string admin_name = 2;
+  // OUTPUT_ONLY
+  string image_url = 3;
+  // OUTPUT_ONLY
+  google.protobuf.Timestamp created_at = 4;
+  // OUTPUT_ONLY
+  optional google.protobuf.Timestamp updated_at = 5;
+  repeated string tag_ids = 6;
+  // INPUT_ONLY
+  bytes image = 7;
+  // OUTPUT_ONLY
+  repeated ImageTag tags = 8;
+}
+
+message ImageTag {
+  string id = 1;
+  string admin_name = 2;
+  bool is_locked = 3;
+  // OUTPUT_ONLY
+  google.protobuf.Timestamp created_at = 4;
+  // OUTPUT_ONLY
+  optional google.protobuf.Timestamp updated_at = 5;
+}

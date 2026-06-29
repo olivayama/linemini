@@ -1,0 +1,3153 @@
+{
+  "files": [
+    {
+      "name": "services/administrator/v1/administrator_service.proto",
+      "description": "",
+      "package": "services.administrator.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateAdministratorRequest",
+          "longName": "CreateAdministratorRequest",
+          "fullName": "services.administrator.v1.CreateAdministratorRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "email",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateAdministratorResponse",
+          "longName": "CreateAdministratorResponse",
+          "fullName": "services.administrator.v1.CreateAdministratorResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator",
+              "description": "",
+              "label": "",
+              "type": "Administrator",
+              "longType": "Administrator",
+              "fullType": "services.administrator.v1.Administrator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeactivateAdministratorRequest",
+          "longName": "DeactivateAdministratorRequest",
+          "fullName": "services.administrator.v1.DeactivateAdministratorRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeactivateAdministratorResponse",
+          "longName": "DeactivateAdministratorResponse",
+          "fullName": "services.administrator.v1.DeactivateAdministratorResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator",
+              "description": "",
+              "label": "",
+              "type": "Administrator",
+              "longType": "Administrator",
+              "fullType": "services.administrator.v1.Administrator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetMyAdministratorSessionRequest",
+          "longName": "GetMyAdministratorSessionRequest",
+          "fullName": "services.administrator.v1.GetMyAdministratorSessionRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "access_token",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetMyAdministratorSessionResponse",
+          "longName": "GetMyAdministratorSessionResponse",
+          "fullName": "services.administrator.v1.GetMyAdministratorSessionResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "access_token",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SendAdministratorInvitationRequest",
+          "longName": "SendAdministratorInvitationRequest",
+          "fullName": "services.administrator.v1.SendAdministratorInvitationRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SendAdministratorInvitationResponse",
+          "longName": "SendAdministratorInvitationResponse",
+          "fullName": "services.administrator.v1.SendAdministratorInvitationResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "SignInAsAdministratorRequest",
+          "longName": "SignInAsAdministratorRequest",
+          "fullName": "services.administrator.v1.SignInAsAdministratorRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "email",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "password",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "invitation_token",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_invitation_token",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SignInAsAdministratorResponse",
+          "longName": "SignInAsAdministratorResponse",
+          "fullName": "services.administrator.v1.SignInAsAdministratorResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "access_token",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateMyAdministratorPasswordRequest",
+          "longName": "UpdateMyAdministratorPasswordRequest",
+          "fullName": "services.administrator.v1.UpdateMyAdministratorPasswordRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "current_password",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "new_password",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateMyAdministratorPasswordResponse",
+          "longName": "UpdateMyAdministratorPasswordResponse",
+          "fullName": "services.administrator.v1.UpdateMyAdministratorPasswordResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "administrator",
+              "description": "",
+              "label": "",
+              "type": "Administrator",
+              "longType": "Administrator",
+              "fullType": "services.administrator.v1.Administrator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "AdministratorService",
+          "longName": "AdministratorService",
+          "fullName": "services.administrator.v1.AdministratorService",
+          "description": "",
+          "methods": [
+            {
+              "name": "CreateAdministrator",
+              "description": "管理者を作成する\n\n@throws Unauthenticated 管理者として認証されていない場合",
+              "requestType": "CreateAdministratorRequest",
+              "requestLongType": "CreateAdministratorRequest",
+              "requestFullType": "services.administrator.v1.CreateAdministratorRequest",
+              "requestStreaming": false,
+              "responseType": "CreateAdministratorResponse",
+              "responseLongType": "CreateAdministratorResponse",
+              "responseFullType": "services.administrator.v1.CreateAdministratorResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "SendAdministratorInvitation",
+              "description": "管理者に招待メールを送る\n\n@throws Unauthenticated 管理者として認証されていない場合",
+              "requestType": "SendAdministratorInvitationRequest",
+              "requestLongType": "SendAdministratorInvitationRequest",
+              "requestFullType": "services.administrator.v1.SendAdministratorInvitationRequest",
+              "requestStreaming": false,
+              "responseType": "SendAdministratorInvitationResponse",
+              "responseLongType": "SendAdministratorInvitationResponse",
+              "responseFullType": "services.administrator.v1.SendAdministratorInvitationResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "DeactivateAdministrator",
+              "description": "管理者を停止する\n\n@throws Unauthenticated 管理者として認証されていない場合",
+              "requestType": "DeactivateAdministratorRequest",
+              "requestLongType": "DeactivateAdministratorRequest",
+              "requestFullType": "services.administrator.v1.DeactivateAdministratorRequest",
+              "requestStreaming": false,
+              "responseType": "DeactivateAdministratorResponse",
+              "responseLongType": "DeactivateAdministratorResponse",
+              "responseFullType": "services.administrator.v1.DeactivateAdministratorResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "SignInAsAdministrator",
+              "description": "ログインする\n\n@throws Unauthenticated 管理者として認証されていない場合",
+              "requestType": "SignInAsAdministratorRequest",
+              "requestLongType": "SignInAsAdministratorRequest",
+              "requestFullType": "services.administrator.v1.SignInAsAdministratorRequest",
+              "requestStreaming": false,
+              "responseType": "SignInAsAdministratorResponse",
+              "responseLongType": "SignInAsAdministratorResponse",
+              "responseFullType": "services.administrator.v1.SignInAsAdministratorResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetMyAdministratorSession",
+              "description": "自身の管理者セッション取得する\n\n@throws Unauthenticated 管理者として認証されていない場合",
+              "requestType": "GetMyAdministratorSessionRequest",
+              "requestLongType": "GetMyAdministratorSessionRequest",
+              "requestFullType": "services.administrator.v1.GetMyAdministratorSessionRequest",
+              "requestStreaming": false,
+              "responseType": "GetMyAdministratorSessionResponse",
+              "responseLongType": "GetMyAdministratorSessionResponse",
+              "responseFullType": "services.administrator.v1.GetMyAdministratorSessionResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "UpdateMyAdministratorPassword",
+              "description": "自身のパスワードを更新する\n\n@throws Unauthenticated 管理者として認証されていない場合\n@throws InvalidArgument 新しいパスワードが不正な場合",
+              "requestType": "UpdateMyAdministratorPasswordRequest",
+              "requestLongType": "UpdateMyAdministratorPasswordRequest",
+              "requestFullType": "services.administrator.v1.UpdateMyAdministratorPasswordRequest",
+              "requestStreaming": false,
+              "responseType": "UpdateMyAdministratorPasswordResponse",
+              "responseLongType": "UpdateMyAdministratorPasswordResponse",
+              "responseFullType": "services.administrator.v1.UpdateMyAdministratorPasswordResponse",
+              "responseStreaming": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "services/administrator/v1/administrator.proto",
+      "description": "",
+      "package": "services.administrator.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Administrator",
+          "longName": "Administrator",
+          "fullName": "services.administrator.v1.Administrator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "email",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "services/image/v1/image_service.proto",
+      "description": "",
+      "package": "services.image.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateImageTagRequest",
+          "longName": "CreateImageTagRequest",
+          "fullName": "services.image.v1.CreateImageTagRequest",
+          "description": "画像タグ を作成するリクエスト",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "画像タグ",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateImageTagResponse",
+          "longName": "CreateImageTagResponse",
+          "fullName": "services.image.v1.CreateImageTagResponse",
+          "description": "画像タグ を作成したレスポンス",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "画像タグ",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageByIdRequest",
+          "longName": "GetImageByIdRequest",
+          "fullName": "services.image.v1.GetImageByIdRequest",
+          "description": "id で 画像 の情報を取得するリクエスト",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_id",
+              "description": "画像ID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageByIdResponse",
+          "longName": "GetImageByIdResponse",
+          "fullName": "services.image.v1.GetImageByIdResponse",
+          "description": "id で 画像 の情報を取得したレスポンス",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "画像",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageTagByAdminNameRequest",
+          "longName": "GetImageTagByAdminNameRequest",
+          "fullName": "services.image.v1.GetImageTagByAdminNameRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "admin_secret_token",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_admin_secret_token",
+              "defaultValue": ""
+            },
+            {
+              "name": "admin_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageTagByAdminNameResponse",
+          "longName": "GetImageTagByAdminNameResponse",
+          "fullName": "services.image.v1.GetImageTagByAdminNameResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageTagByIdRequest",
+          "longName": "GetImageTagByIdRequest",
+          "fullName": "services.image.v1.GetImageTagByIdRequest",
+          "description": "id で 画像 の情報を取得するリクエスト",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag_id",
+              "description": "画像タグID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetImageTagByIdResponse",
+          "longName": "GetImageTagByIdResponse",
+          "fullName": "services.image.v1.GetImageTagByIdResponse",
+          "description": "id で 画像 の情報を取得したレスポンス",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "画像タグ",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListImageTagsRequest",
+          "longName": "ListImageTagsRequest",
+          "fullName": "services.image.v1.ListImageTagsRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingOffsetRequest",
+              "longType": "stdutils.PagingOffsetRequest",
+              "fullType": "stdutils.PagingOffsetRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListImageTagsResponse",
+          "longName": "ListImageTagsResponse",
+          "fullName": "services.image.v1.ListImageTagsResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tags",
+              "description": "",
+              "label": "repeated",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingOffsetResponse",
+              "longType": "stdutils.PagingOffsetResponse",
+              "fullType": "stdutils.PagingOffsetResponse",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListImagesRequest",
+          "longName": "ListImagesRequest",
+          "fullName": "services.image.v1.ListImagesRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag_id",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_image_tag_id",
+              "defaultValue": ""
+            },
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingOffsetRequest",
+              "longType": "stdutils.PagingOffsetRequest",
+              "fullType": "stdutils.PagingOffsetRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListImagesResponse",
+          "longName": "ListImagesResponse",
+          "fullName": "services.image.v1.ListImagesResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "images",
+              "description": "",
+              "label": "repeated",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingOffsetResponse",
+              "longType": "stdutils.PagingOffsetResponse",
+              "fullType": "stdutils.PagingOffsetResponse",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "TmpUploadImageRequest",
+          "longName": "TmpUploadImageRequest",
+          "fullName": "services.image.v1.TmpUploadImageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "admin_secret_token",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_admin_secret_token",
+              "defaultValue": ""
+            },
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "TmpUploadImageResponse",
+          "longName": "TmpUploadImageResponse",
+          "fullName": "services.image.v1.TmpUploadImageResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateImageTagRequest",
+          "longName": "UpdateImageTagRequest",
+          "fullName": "services.image.v1.UpdateImageTagRequest",
+          "description": "画像タグ を更新するリクエスト",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "画像タグ",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateImageTagResponse",
+          "longName": "UpdateImageTagResponse",
+          "fullName": "services.image.v1.UpdateImageTagResponse",
+          "description": "画像タグ を更新したレスポンス",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image_tag",
+              "description": "画像タグ",
+              "label": "",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateTmpUploadImageRequest",
+          "longName": "UpdateTmpUploadImageRequest",
+          "fullName": "services.image.v1.UpdateTmpUploadImageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "replace_image",
+              "description": "",
+              "label": "optional",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_replace_image",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateTmpUploadImageResponse",
+          "longName": "UpdateTmpUploadImageResponse",
+          "fullName": "services.image.v1.UpdateTmpUploadImageResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateUploadImageRequest",
+          "longName": "UpdateUploadImageRequest",
+          "fullName": "services.image.v1.UpdateUploadImageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "replace_image",
+              "description": "",
+              "label": "optional",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_replace_image",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateUploadImageResponse",
+          "longName": "UpdateUploadImageResponse",
+          "fullName": "services.image.v1.UpdateUploadImageResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UploadImageRequest",
+          "longName": "UploadImageRequest",
+          "fullName": "services.image.v1.UploadImageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "admin_secret_token",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_admin_secret_token",
+              "defaultValue": ""
+            },
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UploadImageResponse",
+          "longName": "UploadImageResponse",
+          "fullName": "services.image.v1.UploadImageResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "Image",
+              "longType": "Image",
+              "fullType": "services.image.v1.Image",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ImageService",
+          "longName": "ImageService",
+          "fullName": "services.image.v1.ImageService",
+          "description": "",
+          "methods": [
+            {
+              "name": "UploadImage",
+              "description": "画像をアップロードする\n\n@throws Unauthenticated admin_secret_token がない \u0026\u0026 管理画面ログイン中ではない場合",
+              "requestType": "UploadImageRequest",
+              "requestLongType": "UploadImageRequest",
+              "requestFullType": "services.image.v1.UploadImageRequest",
+              "requestStreaming": true,
+              "responseType": "UploadImageResponse",
+              "responseLongType": "UploadImageResponse",
+              "responseFullType": "services.image.v1.UploadImageResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "TmpUploadImage",
+              "description": "画像をアップロードする\nブラウザ用のクライアントが client streaming をサポートするまでの間の暫定的なエンドポイント\n\n@throws Unauthenticated admin_secret_token がない \u0026\u0026 管理画面ログイン中ではない場合",
+              "requestType": "TmpUploadImageRequest",
+              "requestLongType": "TmpUploadImageRequest",
+              "requestFullType": "services.image.v1.TmpUploadImageRequest",
+              "requestStreaming": false,
+              "responseType": "TmpUploadImageResponse",
+              "responseLongType": "TmpUploadImageResponse",
+              "responseFullType": "services.image.v1.TmpUploadImageResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "ListImages",
+              "description": "画像の一覧を取得する\n\n@throws Unauthenticated 管理画面ログイン中ではない場合",
+              "requestType": "ListImagesRequest",
+              "requestLongType": "ListImagesRequest",
+              "requestFullType": "services.image.v1.ListImagesRequest",
+              "requestStreaming": false,
+              "responseType": "ListImagesResponse",
+              "responseLongType": "ListImagesResponse",
+              "responseFullType": "services.image.v1.ListImagesResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetImageById",
+              "description": "id で 画像の情報を取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "GetImageByIdRequest",
+              "requestLongType": "GetImageByIdRequest",
+              "requestFullType": "services.image.v1.GetImageByIdRequest",
+              "requestStreaming": false,
+              "responseType": "GetImageByIdResponse",
+              "responseLongType": "GetImageByIdResponse",
+              "responseFullType": "services.image.v1.GetImageByIdResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "UpdateUploadImage",
+              "description": "画像を更新する\n\n@throws Unauthenticated admin_secret_token がない \u0026\u0026 管理画面ログイン中ではない場合",
+              "requestType": "UpdateUploadImageRequest",
+              "requestLongType": "UpdateUploadImageRequest",
+              "requestFullType": "services.image.v1.UpdateUploadImageRequest",
+              "requestStreaming": true,
+              "responseType": "UpdateUploadImageResponse",
+              "responseLongType": "UpdateUploadImageResponse",
+              "responseFullType": "services.image.v1.UpdateUploadImageResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "UpdateTmpUploadImage",
+              "description": "画像を更新する\nブラウザ用のクライアントが client streaming をサポートするまでの間の暫定的なエンドポイント\n\n@throws Unauthenticated admin_secret_token がない \u0026\u0026 管理画面ログイン中ではない場合",
+              "requestType": "UpdateTmpUploadImageRequest",
+              "requestLongType": "UpdateTmpUploadImageRequest",
+              "requestFullType": "services.image.v1.UpdateTmpUploadImageRequest",
+              "requestStreaming": false,
+              "responseType": "UpdateTmpUploadImageResponse",
+              "responseLongType": "UpdateTmpUploadImageResponse",
+              "responseFullType": "services.image.v1.UpdateTmpUploadImageResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "CreateImageTag",
+              "description": "画像タグを作成する\n\n@throws Unauthenticated 管理画面ログイン中ではない場合\n@throws AlreadyExists 既に同じ管理名の画像タグが存在する場合",
+              "requestType": "CreateImageTagRequest",
+              "requestLongType": "CreateImageTagRequest",
+              "requestFullType": "services.image.v1.CreateImageTagRequest",
+              "requestStreaming": false,
+              "responseType": "CreateImageTagResponse",
+              "responseLongType": "CreateImageTagResponse",
+              "responseFullType": "services.image.v1.CreateImageTagResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetImageTagById",
+              "description": "id で 画像タグの情報を取得する\n\n@throws Unauthenticated 認証に失敗した場合\n@throws NotFound 画像タグが見つからない場合",
+              "requestType": "GetImageTagByIdRequest",
+              "requestLongType": "GetImageTagByIdRequest",
+              "requestFullType": "services.image.v1.GetImageTagByIdRequest",
+              "requestStreaming": false,
+              "responseType": "GetImageTagByIdResponse",
+              "responseLongType": "GetImageTagByIdResponse",
+              "responseFullType": "services.image.v1.GetImageTagByIdResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetImageTagByAdminName",
+              "description": "管理名から画像タグを取得する\n\n@throws Unauthenticated admin_secret_token がない \u0026\u0026 管理画面ログイン中ではない場合",
+              "requestType": "GetImageTagByAdminNameRequest",
+              "requestLongType": "GetImageTagByAdminNameRequest",
+              "requestFullType": "services.image.v1.GetImageTagByAdminNameRequest",
+              "requestStreaming": false,
+              "responseType": "GetImageTagByAdminNameResponse",
+              "responseLongType": "GetImageTagByAdminNameResponse",
+              "responseFullType": "services.image.v1.GetImageTagByAdminNameResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "ListImageTags",
+              "description": "画像タグの一覧を取得する\n\n@throws Unauthenticated 管理画面ログイン中ではない場合",
+              "requestType": "ListImageTagsRequest",
+              "requestLongType": "ListImageTagsRequest",
+              "requestFullType": "services.image.v1.ListImageTagsRequest",
+              "requestStreaming": false,
+              "responseType": "ListImageTagsResponse",
+              "responseLongType": "ListImageTagsResponse",
+              "responseFullType": "services.image.v1.ListImageTagsResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "UpdateImageTag",
+              "description": "画像タグ を更新する\n\n@throws Unauthenticated 認証に失敗した場合\n@throws NotFound 画像タグ が見つからない場合\n@throws FailedPrecondition 編集不可の場合\n@throws AlreadyExists 既に同じ管理名の画像タグが存在する場合",
+              "requestType": "UpdateImageTagRequest",
+              "requestLongType": "UpdateImageTagRequest",
+              "requestFullType": "services.image.v1.UpdateImageTagRequest",
+              "requestStreaming": false,
+              "responseType": "UpdateImageTagResponse",
+              "responseLongType": "UpdateImageTagResponse",
+              "responseFullType": "services.image.v1.UpdateImageTagResponse",
+              "responseStreaming": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "services/image/v1/image.proto",
+      "description": "",
+      "package": "services.image.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Image",
+          "longName": "Image",
+          "fullName": "services.image.v1.Image",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "admin_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "image_url",
+              "description": "OUTPUT_ONLY",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "OUTPUT_ONLY",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "OUTPUT_ONLY",
+              "label": "optional",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_updated_at",
+              "defaultValue": ""
+            },
+            {
+              "name": "tag_ids",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "image",
+              "description": "INPUT_ONLY",
+              "label": "",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "OUTPUT_ONLY",
+              "label": "repeated",
+              "type": "ImageTag",
+              "longType": "ImageTag",
+              "fullType": "services.image.v1.ImageTag",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ImageTag",
+          "longName": "ImageTag",
+          "fullName": "services.image.v1.ImageTag",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "admin_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_locked",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "OUTPUT_ONLY",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "OUTPUT_ONLY",
+              "label": "optional",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_updated_at",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "services/user/v1/user_service.proto",
+      "description": "",
+      "package": "services.user.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "AgreeToServiceRequest",
+          "longName": "AgreeToServiceRequest",
+          "fullName": "services.user.v1.AgreeToServiceRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "version",
+              "description": "同意する利用規約のバージョン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "AgreeToServiceResponse",
+          "longName": "AgreeToServiceResponse",
+          "fullName": "services.user.v1.AgreeToServiceResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "service_agreements",
+              "description": "サービス同意のリスト",
+              "label": "repeated",
+              "type": "UserServiceAgreement",
+              "longType": "UserServiceAgreement",
+              "fullType": "services.user.v1.UserServiceAgreement",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CompleteTutorialRequest",
+          "longName": "CompleteTutorialRequest",
+          "fullName": "services.user.v1.CompleteTutorialRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "version",
+              "description": "完了したチュートリアルのバージョン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CompleteTutorialResponse",
+          "longName": "CompleteTutorialResponse",
+          "fullName": "services.user.v1.CompleteTutorialResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "tutorial_completions",
+              "description": "チュートリアルの完了履歴のリスト",
+              "label": "repeated",
+              "type": "UserTutorialCompletion",
+              "longType": "UserTutorialCompletion",
+              "fullType": "services.user.v1.UserTutorialCompletion",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteMyUserRequest",
+          "longName": "DeleteMyUserRequest",
+          "fullName": "services.user.v1.DeleteMyUserRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "DeleteMyUserResponse",
+          "longName": "DeleteMyUserResponse",
+          "fullName": "services.user.v1.DeleteMyUserResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "DeleteUserByIdRequest",
+          "longName": "DeleteUserByIdRequest",
+          "fullName": "services.user.v1.DeleteUserByIdRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "admin_secret_token",
+              "description": "管理シークレットトークン。指定すべき値は AWS Secrets Manager を確認する",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
+              "description": "ユーザー ID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteUserByIdResponse",
+          "longName": "DeleteUserByIdResponse",
+          "fullName": "services.user.v1.DeleteUserByIdResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "ExportUsersCSVRequest",
+          "longName": "ExportUsersCSVRequest",
+          "fullName": "services.user.v1.ExportUsersCSVRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "year_month",
+              "description": "",
+              "label": "optional",
+              "type": "YearMonth",
+              "longType": "stdutils.YearMonth",
+              "fullType": "stdutils.YearMonth",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_year_month",
+              "defaultValue": ""
+            },
+            {
+              "name": "customer_number_prefix",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_customer_number_prefix",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ExportUsersCSVResponse",
+          "longName": "ExportUsersCSVResponse",
+          "fullName": "services.user.v1.ExportUsersCSVResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "csv",
+              "description": "",
+              "label": "",
+              "type": "ExportCSVResponse",
+              "longType": "stdutils.ExportCSVResponse",
+              "fullType": "stdutils.ExportCSVResponse",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetMyUserRequest",
+          "longName": "GetMyUserRequest",
+          "fullName": "services.user.v1.GetMyUserRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "GetMyUserResponse",
+          "longName": "GetMyUserResponse",
+          "fullName": "services.user.v1.GetMyUserResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user",
+              "description": "ユーザー情報",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "services.user.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetMyUserSessionRequest",
+          "longName": "GetMyUserSessionRequest",
+          "fullName": "services.user.v1.GetMyUserSessionRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "access_token",
+              "description": "アクセストークン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetMyUserSessionResponse",
+          "longName": "GetMyUserSessionResponse",
+          "fullName": "services.user.v1.GetMyUserSessionResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "ユーザー ID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "access_token",
+              "description": "アクセストークン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserByCustomerNumberRequest",
+          "longName": "GetUserByCustomerNumberRequest",
+          "fullName": "services.user.v1.GetUserByCustomerNumberRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "customer_number",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserByCustomerNumberResponse",
+          "longName": "GetUserByCustomerNumberResponse",
+          "fullName": "services.user.v1.GetUserByCustomerNumberResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "services.user.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserByIdRequest",
+          "longName": "GetUserByIdRequest",
+          "fullName": "services.user.v1.GetUserByIdRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserByIdResponse",
+          "longName": "GetUserByIdResponse",
+          "fullName": "services.user.v1.GetUserByIdResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "services.user.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListUsersRequest",
+          "longName": "ListUsersRequest",
+          "fullName": "services.user.v1.ListUsersRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingCursorRequest",
+              "longType": "stdutils.PagingCursorRequest",
+              "fullType": "stdutils.PagingCursorRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "customer_number_prefix",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_customer_number_prefix",
+              "defaultValue": ""
+            },
+            {
+              "name": "year_month",
+              "description": "",
+              "label": "optional",
+              "type": "YearMonth",
+              "longType": "stdutils.YearMonth",
+              "fullType": "stdutils.YearMonth",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_year_month",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListUsersResponse",
+          "longName": "ListUsersResponse",
+          "fullName": "services.user.v1.ListUsersResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "users",
+              "description": "",
+              "label": "repeated",
+              "type": "User",
+              "longType": "User",
+              "fullType": "services.user.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "paging",
+              "description": "",
+              "label": "",
+              "type": "PagingCursorResponse",
+              "longType": "stdutils.PagingCursorResponse",
+              "fullType": "stdutils.PagingCursorResponse",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SetMyProfileRequest",
+          "longName": "SetMyProfileRequest",
+          "fullName": "services.user.v1.SetMyProfileRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "profile",
+              "description": "プロフィール",
+              "label": "",
+              "type": "UserProfile",
+              "longType": "UserProfile",
+              "fullType": "services.user.v1.UserProfile",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SetMyProfileResponse",
+          "longName": "SetMyProfileResponse",
+          "fullName": "services.user.v1.SetMyProfileResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "profile",
+              "description": "プロフィール",
+              "label": "",
+              "type": "UserProfile",
+              "longType": "UserProfile",
+              "fullType": "services.user.v1.UserProfile",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SignInOrUpByLineOpenIdRequest",
+          "longName": "SignInOrUpByLineOpenIdRequest",
+          "fullName": "services.user.v1.SignInOrUpByLineOpenIdRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "line_open_id_token",
+              "description": "LINE OpenID トークン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sign_up_params",
+              "description": "サインアップ時にのみ指定するパラメータ",
+              "label": "optional",
+              "type": "SignUpParams",
+              "longType": "SignInOrUpByLineOpenIdRequest.SignUpParams",
+              "fullType": "services.user.v1.SignInOrUpByLineOpenIdRequest.SignUpParams",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_sign_up_params",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SignUpParams",
+          "longName": "SignInOrUpByLineOpenIdRequest.SignUpParams",
+          "fullName": "services.user.v1.SignInOrUpByLineOpenIdRequest.SignUpParams",
+          "description": "サインアップ時にのみ指定するパラメータ",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "referrer",
+              "description": "referrerクエリの値",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_referrer",
+              "defaultValue": ""
+            },
+            {
+              "name": "first_access_path",
+              "description": "初回アクセスパス",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_agreement_version",
+              "description": "同意する利用規約のバージョン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SignInOrUpByLineOpenIdResponse",
+          "longName": "SignInOrUpByLineOpenIdResponse",
+          "fullName": "services.user.v1.SignInOrUpByLineOpenIdResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "ユーザー ID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_line_account_uid",
+              "description": "LINE アカウント UID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "access_token",
+              "description": "アクセストークン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "UserService",
+          "longName": "UserService",
+          "fullName": "services.user.v1.UserService",
+          "description": "",
+          "methods": [
+            {
+              "name": "SignInOrUpByLineOpenId",
+              "description": "LINE OpenID でユーザー登録もしくはログインする\n\n@throws Unauthenticated 認証に失敗した場合\n@throws FailedPrecondition サービス同意バージョンの指定なしでユーザーを作成しようとした場合",
+              "requestType": "SignInOrUpByLineOpenIdRequest",
+              "requestLongType": "SignInOrUpByLineOpenIdRequest",
+              "requestFullType": "services.user.v1.SignInOrUpByLineOpenIdRequest",
+              "requestStreaming": false,
+              "responseType": "SignInOrUpByLineOpenIdResponse",
+              "responseLongType": "SignInOrUpByLineOpenIdResponse",
+              "responseFullType": "services.user.v1.SignInOrUpByLineOpenIdResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetMyUserSession",
+              "description": "アクセストークンに紐付くユーザーのセッションを取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "GetMyUserSessionRequest",
+              "requestLongType": "GetMyUserSessionRequest",
+              "requestFullType": "services.user.v1.GetMyUserSessionRequest",
+              "requestStreaming": false,
+              "responseType": "GetMyUserSessionResponse",
+              "responseLongType": "GetMyUserSessionResponse",
+              "responseFullType": "services.user.v1.GetMyUserSessionResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetMyUser",
+              "description": "アクセストークンに紐付くユーザーの情報を取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "GetMyUserRequest",
+              "requestLongType": "GetMyUserRequest",
+              "requestFullType": "services.user.v1.GetMyUserRequest",
+              "requestStreaming": false,
+              "responseType": "GetMyUserResponse",
+              "responseLongType": "GetMyUserResponse",
+              "responseFullType": "services.user.v1.GetMyUserResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetUserById",
+              "description": "id でユーザーの情報を取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "GetUserByIdRequest",
+              "requestLongType": "GetUserByIdRequest",
+              "requestFullType": "services.user.v1.GetUserByIdRequest",
+              "requestStreaming": false,
+              "responseType": "GetUserByIdResponse",
+              "responseLongType": "GetUserByIdResponse",
+              "responseFullType": "services.user.v1.GetUserByIdResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetUserByCustomerNumber",
+              "description": "customer_number でユーザーの情報を取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "GetUserByCustomerNumberRequest",
+              "requestLongType": "GetUserByCustomerNumberRequest",
+              "requestFullType": "services.user.v1.GetUserByCustomerNumberRequest",
+              "requestStreaming": false,
+              "responseType": "GetUserByCustomerNumberResponse",
+              "responseLongType": "GetUserByCustomerNumberResponse",
+              "responseFullType": "services.user.v1.GetUserByCustomerNumberResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "ListUsers",
+              "description": "ユーザーの一覧を取得する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "ListUsersRequest",
+              "requestLongType": "ListUsersRequest",
+              "requestFullType": "services.user.v1.ListUsersRequest",
+              "requestStreaming": false,
+              "responseType": "ListUsersResponse",
+              "responseLongType": "ListUsersResponse",
+              "responseFullType": "services.user.v1.ListUsersResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "ExportUsersCSV",
+              "description": "ユーザーの一覧を CSV で出力する\n\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "ExportUsersCSVRequest",
+              "requestLongType": "ExportUsersCSVRequest",
+              "requestFullType": "services.user.v1.ExportUsersCSVRequest",
+              "requestStreaming": false,
+              "responseType": "ExportUsersCSVResponse",
+              "responseLongType": "ExportUsersCSVResponse",
+              "responseFullType": "services.user.v1.ExportUsersCSVResponse",
+              "responseStreaming": true
+            },
+            {
+              "name": "DeleteMyUser",
+              "description": "ユーザーを削除する\n\n@throws NotFound ユーザーが見つからなかった場合\n@throws Unimplemented 無効な操作だった場合\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "DeleteMyUserRequest",
+              "requestLongType": "DeleteMyUserRequest",
+              "requestFullType": "services.user.v1.DeleteMyUserRequest",
+              "requestStreaming": false,
+              "responseType": "DeleteMyUserResponse",
+              "responseLongType": "DeleteMyUserResponse",
+              "responseFullType": "services.user.v1.DeleteMyUserResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "DeleteUserById",
+              "description": "id でユーザーを削除する\n\n@throws NotFound ユーザーが見つからなかった場合\n@throws Unimplemented 無効な操作だった場合\n@throws Unauthenticated 認証に失敗した場合",
+              "requestType": "DeleteUserByIdRequest",
+              "requestLongType": "DeleteUserByIdRequest",
+              "requestFullType": "services.user.v1.DeleteUserByIdRequest",
+              "requestStreaming": false,
+              "responseType": "DeleteUserByIdResponse",
+              "responseLongType": "DeleteUserByIdResponse",
+              "responseFullType": "services.user.v1.DeleteUserByIdResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "SetMyProfile",
+              "description": "プロフィールをセットする\n @throws NotFound ユーザーが見つからなかった場合\n @throws Unauthenticated ログインしていないユーザーが呼び出した場合",
+              "requestType": "SetMyProfileRequest",
+              "requestLongType": "SetMyProfileRequest",
+              "requestFullType": "services.user.v1.SetMyProfileRequest",
+              "requestStreaming": false,
+              "responseType": "SetMyProfileResponse",
+              "responseLongType": "SetMyProfileResponse",
+              "responseFullType": "services.user.v1.SetMyProfileResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "AgreeToService",
+              "description": "規約に同意する\n\n@throws Unauthenticated ログインしていないユーザーが呼び出した場合",
+              "requestType": "AgreeToServiceRequest",
+              "requestLongType": "AgreeToServiceRequest",
+              "requestFullType": "services.user.v1.AgreeToServiceRequest",
+              "requestStreaming": false,
+              "responseType": "AgreeToServiceResponse",
+              "responseLongType": "AgreeToServiceResponse",
+              "responseFullType": "services.user.v1.AgreeToServiceResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "CompleteTutorial",
+              "description": "チュートリアルを完了する\n\n@throws Unauthenticated ログインしていないユーザーが呼び出した場合",
+              "requestType": "CompleteTutorialRequest",
+              "requestLongType": "CompleteTutorialRequest",
+              "requestFullType": "services.user.v1.CompleteTutorialRequest",
+              "requestStreaming": false,
+              "responseType": "CompleteTutorialResponse",
+              "responseLongType": "CompleteTutorialResponse",
+              "responseFullType": "services.user.v1.CompleteTutorialResponse",
+              "responseStreaming": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "services/user/v1/user.proto",
+      "description": "",
+      "package": "services.user.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "User",
+          "longName": "User",
+          "fullName": "services.user.v1.User",
+          "description": "ユーザー",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "ユーザー ID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "customer_number",
+              "description": "お客様番号",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "signed_up_at",
+              "description": "ユーザーがサインアップした日時",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "referrer",
+              "description": "リファラー",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_referrer",
+              "defaultValue": ""
+            },
+            {
+              "name": "first_access_path",
+              "description": "初回アクセスパス",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "line_account",
+              "description": "LINE アカウント",
+              "label": "",
+              "type": "UserLineAccount",
+              "longType": "UserLineAccount",
+              "fullType": "services.user.v1.UserLineAccount",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "profile",
+              "description": "ユーザープロフィール",
+              "label": "optional",
+              "type": "UserProfile",
+              "longType": "UserProfile",
+              "fullType": "services.user.v1.UserProfile",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_profile",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_agreements",
+              "description": "利用規約同意履歴のリスト",
+              "label": "repeated",
+              "type": "UserServiceAgreement",
+              "longType": "UserServiceAgreement",
+              "fullType": "services.user.v1.UserServiceAgreement",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tutorial_completions",
+              "description": "チュートリアル完了履歴のリスト",
+              "label": "repeated",
+              "type": "UserTutorialCompletion",
+              "longType": "UserTutorialCompletion",
+              "fullType": "services.user.v1.UserTutorialCompletion",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserLineAccount",
+          "longName": "UserLineAccount",
+          "fullName": "services.user.v1.UserLineAccount",
+          "description": "LINE アカウント",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "uid",
+              "description": "LINE アカウント UID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserProfile",
+          "longName": "UserProfile",
+          "fullName": "services.user.v1.UserProfile",
+          "description": "ユーザープロフィール",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "birthday",
+              "description": "誕生日",
+              "label": "optional",
+              "type": "DateOnly",
+              "longType": "stdutils.DateOnly",
+              "fullType": "stdutils.DateOnly",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_birthday",
+              "defaultValue": ""
+            },
+            {
+              "name": "sex_code",
+              "description": "性別コード。0: その他, 1: 男性, 2: 女性",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_sex_code",
+              "defaultValue": ""
+            },
+            {
+              "name": "prefecture_code",
+              "description": "都道府県コード。",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_prefecture_code",
+              "defaultValue": ""
+            },
+            {
+              "name": "initial_questionnaire_answers",
+              "description": "初回アクセス時のアンケート回答",
+              "label": "optional",
+              "type": "InitialQuestionnaireAnswers",
+              "longType": "UserProfile.InitialQuestionnaireAnswers",
+              "fullType": "services.user.v1.UserProfile.InitialQuestionnaireAnswers",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_initial_questionnaire_answers",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Answer",
+          "longName": "UserProfile.Answer",
+          "fullName": "services.user.v1.UserProfile.Answer",
+          "description": "アンケート回答",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "question",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "answer",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "InitialQuestionnaireAnswers",
+          "longName": "UserProfile.InitialQuestionnaireAnswers",
+          "fullName": "services.user.v1.UserProfile.InitialQuestionnaireAnswers",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "answers",
+              "description": "",
+              "label": "repeated",
+              "type": "Answer",
+              "longType": "UserProfile.Answer",
+              "fullType": "services.user.v1.UserProfile.Answer",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserServiceAgreement",
+          "longName": "UserServiceAgreement",
+          "fullName": "services.user.v1.UserServiceAgreement",
+          "description": "利用規約同意履歴",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "version",
+              "description": "同意した利用規約のバージョン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "agreed_at",
+              "description": "同意した日時",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserTutorialCompletion",
+          "longName": "UserTutorialCompletion",
+          "fullName": "services.user.v1.UserTutorialCompletion",
+          "description": "チュートリアル完了履歴",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "version",
+              "description": "同意したチュートリアルのバージョン",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "completed_at",
+              "description": "同意完了日時",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "stdutils/csv.proto",
+      "description": "",
+      "package": "stdutils",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "ExportCSVResponse",
+          "longName": "ExportCSVResponse",
+          "fullName": "stdutils.ExportCSVResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Metadata",
+              "longType": "ExportCSVResponse.Metadata",
+              "fullType": "stdutils.ExportCSVResponse.Metadata",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "payload",
+              "defaultValue": ""
+            },
+            {
+              "name": "chunk",
+              "description": "",
+              "label": "",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "payload",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Metadata",
+          "longName": "ExportCSVResponse.Metadata",
+          "fullName": "stdutils.ExportCSVResponse.Metadata",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "estimated_chunk_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "stdutils/date_only.proto",
+      "description": "",
+      "package": "stdutils",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "DateOnly",
+          "longName": "DateOnly",
+          "fullName": "stdutils.DateOnly",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "year",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "month",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "day_of_month",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "stdutils/paging.proto",
+      "description": "",
+      "package": "stdutils",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "PagingCursorRequest",
+          "longName": "PagingCursorRequest",
+          "fullName": "stdutils.PagingCursorRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "exclusive_start_id",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_exclusive_start_id",
+              "defaultValue": ""
+            },
+            {
+              "name": "limit",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PagingCursorResponse",
+          "longName": "PagingCursorResponse",
+          "fullName": "stdutils.PagingCursorResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "last_evaluated_id",
+              "description": "",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_last_evaluated_id",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PagingOffsetRequest",
+          "longName": "PagingOffsetRequest",
+          "fullName": "stdutils.PagingOffsetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "offset",
+              "description": "",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_offset",
+              "defaultValue": ""
+            },
+            {
+              "name": "limit",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PagingOffsetResponse",
+          "longName": "PagingOffsetResponse",
+          "fullName": "stdutils.PagingOffsetResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "stdutils/year_month.proto",
+      "description": "",
+      "package": "stdutils",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "YearMonth",
+          "longName": "YearMonth",
+          "fullName": "stdutils.YearMonth",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "year",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "month",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": []
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

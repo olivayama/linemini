@@ -1,0 +1,7 @@
+exclude:
+  - goose_db_version
+er:
+  format: mermaid
+detectVirtualRelations:
+  enabled: true
+  strategy: singularTableName

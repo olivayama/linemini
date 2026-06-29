@@ -1,0 +1,17 @@
+version: v1
+plugins:
+  - plugin: es
+    opt: target=ts
+    out: ./apps/api/gen.tmp
+  - plugin: connect-es
+    opt: target=ts
+    out: ./apps/api/gen.tmp
+  - name: es
+    opt: [target=ts, import_extension=none]
+    out: ./apps/web/gen.tmp
+  - name: connect-es
+    opt: [target=ts, import_extension=none]
+    out: ./apps/web/gen.tmp
+  - name: connect-query
+    out: ./apps/web/gen.tmp
+    opt: [target=ts, import_extension=none]

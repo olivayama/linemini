@@ -1,0 +1,6 @@
+packages:
+  - "apps/web"
+  - "apps/api"
+  - "devtools/kysely-codemod"
+  - "devtools/kysely-columns"
+  - "infrastructures"

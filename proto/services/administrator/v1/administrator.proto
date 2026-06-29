@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package services.administrator.v1;
+
+message Administrator {
+  string id = 1;
+  string email = 2;
+}

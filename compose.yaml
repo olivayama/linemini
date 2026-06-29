@@ -1,0 +1,140 @@
+services:
+  mysql:
+    # Aurora MySQL 3.12.0 compatible
+    # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraMySQLReleaseNotes/AuroraMySQL.Updates.3120.html
+    image: mysql:8.0.44-debian
+    platform: linux/amd64
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_INNODB_BUFFER_POOL_SIZE: 1G
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
+      interval: 5s
+      timeout: 1s
+      retries: 20
+  minio:
+    image: quay.io/minio/minio:RELEASE.2023-12-14T18-51-57Z
+    entrypoint: sh
+    command: -c 'mkdir -p /data/private /data/public && minio server /data --console-address ":9001"'
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: access_key_id_1234
+      MINIO_ROOT_PASSWORD: secret_access_key_1234
+    volumes:
+      - minio_data:/data
+  minio-policy:
+    image: quay.io/minio/minio:RELEASE.2023-12-14T18-51-57Z
+    entrypoint: sh
+    command: -c 'mc alias set minio http://minio:9000 access_key_id_1234 secret_access_key_1234 && mc anonymous set public minio/public'
+    depends_on:
+      - minio
+  go:
+    build: ./docker/go
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: ${CODE_NAME:-}
+    volumes:
+      - ./migrations:/app/migrations
+      - ./docs/db:/app/docs/db
+      - ./devtools:/app/devtools:ro
+      - ./.tbls.yml:/app/.tbls.yml:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+  nodejs:
+    build:
+      context: .
+      dockerfile: ./docker/nodejs/Dockerfile
+    command: pnpm run dev
+    ports:
+      - 4000:4000
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:4000/health",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    depends_on:
+      mysql:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app/
+        - action: rebuild
+          path: ./pnpm-lock.yaml
+    environment:
+      # api
+      APP_ENV: localhost
+      LOGGING_DEV_MODE: 1
+      ADMIN_SECRET_TOKEN: abc
+      CORS_ORIGINS: https://localhost
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: ${CODE_NAME:-}
+      SESSION_JWT_ISSUER: ${CODE_NAME:-}
+      SESSION_JWT_AUDIENCE: ${CODE_NAME:-}
+      SESSION_JWT_SECRET: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ADMIN_SESSION_JWT_ISSUER: ${CODE_NAME:-}
+      ADMIN_SESSION_JWT_AUDIENCE: ${CODE_NAME:-}
+      ADMIN_SESSION_JWT_SECRET: "baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      S3_PUBLIC_BUCKET: public
+      S3_PUBLIC_BUCKET_BASE_URL: https://localhost/_minio/public
+      S3_ENDPOINT: "http://minio:9000" # to use minio
+      S3_FORCE_PATH_STYLE: "1" # to use minio
+      S3_ENABLE_ACL: true # to use minio
+      SES_FROM: d@opt.ne.jp
+      SES_ENDPOINT: "http://aws-ses:8005"
+      AWS_REGION: ap-northeast-1
+      AWS_ACCESS_KEY_ID: access_key_id_1234
+      AWS_SECRET_ACCESS_KEY: secret_access_key_1234
+      # 管理者の初期認証情報
+      INITIAL_ADMINISTRATOR_EMAIL: d@opt.ne.jp
+      INITIAL_ADMINISTRATOR_PASSWORD: d@opt.ne.jp
+      ADMIN_LOGIN_CREDENTIAL_PEPPER: abc
+      ADMIN_INVITATION_PEPPER: abc
+      # web
+      NEXT_PUBLIC_APP_ENV: localhost
+      NEXT_PUBLIC_BASE_URL: https://localhost
+      NEXT_PUBLIC_CONNECT_BASE_URL: https://localhost/_api
+      NEXT_PUBLIC_LIFF_ID: 2001316806-PRr3VeXl
+      NEXT_PUBLIC_LIFF_URL: https://liff.line.me/2001316806-PRr3VeXl
+      CONNECT_BASE_URL: http://localhost:4000
+      COOKIE_NAME: "${CODE_NAME:-}_sess"
+      COOKIE_MAX_AGE: 31536000 # 60 * 60 * 24 * 365
+      COOKIE_PASSWORD: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "443:443"
+    volumes:
+      - ./docker/nginx/certs:/etc/nginx/certs:ro
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nodejs
+
+volumes:
+  mysql_data:
+  minio_data:

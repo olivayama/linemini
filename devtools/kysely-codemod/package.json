@@ -1,0 +1,19 @@
+{
+  "name": "@devtools/kysely-codemod",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "tsc": "tsc -p . -noEmit",
+    "start": "ts-node-dev --quiet index.ts"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.4",
+    "@types/node": "^20.9.3",
+    "ts-morph": "^20.0.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "typescript": "^5.2.2"
+  }
+}
