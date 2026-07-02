@@ -16,7 +16,7 @@
 #### AWS CLI の設定
 
 ```
-aws configure --profile xxxcodenamexxx
+aws configure --profile testyama
 ```
 
 ```
@@ -29,7 +29,7 @@ Default output format [None]:
 #### AWS CLI の設定確認
 
 ```
-aws ec2 --profile xxxcodenamexxx describe-vpcs --query "Vpcs[].CidrBlock"
+aws ec2 --profile testyama describe-vpcs --query "Vpcs[].CidrBlock"
 ```
 
 この時下記のような結果が得られることを確認する（具体的な内容に差異がありうる）。
@@ -61,13 +61,13 @@ EC2-VPC Elastic IPs を 5 → 20 に上げる。
 下記コマンドを実行して現在のリミット値を確認する。
 
 ```
-aws service-quotas --profile xxxcodenamexxx get-service-quota --service-code=ec2 --quota-code=L-0263D0A3 --query Quota.Value
+aws service-quotas --profile testyama get-service-quota --service-code=ec2 --quota-code=L-0263D0A3 --query Quota.Value
 ```
 
 20 未満であれば、下記コマンドを実行してリミット値を増やす。
 
 ```
-aws service-quotas --profile xxxcodenamexxx request-service-quota-increase --service-code=ec2 --quota-code=L-0263D0A3 --desired-value 20
+aws service-quotas --profile testyama request-service-quota-increase --service-code=ec2 --quota-code=L-0263D0A3 --desired-value 20
 ```
 
 #### Fargate のクオータのリミットを上げる
@@ -75,14 +75,14 @@ aws service-quotas --profile xxxcodenamexxx request-service-quota-increase --ser
 下記コマンドを実行して現在のリミット値を確認する。
 
 ```
-aws service-quotas --profile xxxcodenamexxx get-service-quota --service-code=fargate --quota-code=L-3032A538 --query "Quota.Value"
+aws service-quotas --profile testyama get-service-quota --service-code=fargate --quota-code=L-3032A538 --query "Quota.Value"
 ```
 
 50 未満程度であれば、下記コマンドを実行してリミット値を増やすリクエストを投げる。
 ※10, 512, 4000 のどれかになっているケースが想定される。10 だった場合少なすぎるので上げるリクエストをする。
 
 ```
-aws service-quotas --profile xxxcodenamexxx request-service-quota-increase --service-code=fargate --quota-code=L-3032A538 --desired-value 4000
+aws service-quotas --profile testyama request-service-quota-increase --service-code=fargate --quota-code=L-3032A538 --desired-value 4000
 ```
 
 このリクエストは 3 日以上かかるので、短期（1 日）での増加が必要であれば小さめ（30 程度）に抑えて申請すること。
@@ -96,7 +96,7 @@ aws service-quotas --profile xxxcodenamexxx request-service-quota-increase --ser
 ※ ~/Documents/repos にプロジェクトのリポジトリをクローン済みであるものとする
 
 ```
-cd ~/Documents/repos/xxxcodenamexxx
+cd ~/Documents/repos/testyama
 asdf install
 make setup
 git switch -c infra
@@ -107,10 +107,10 @@ cd infrastructures
 
 #### コード修正（AWS アカウント ID の設定）
 
-下記手順でプロファイル `xxxcodenamexxx` のアカウント ID を取得する。
+下記手順でプロファイル `testyama` のアカウント ID を取得する。
 
 ```
-aws --profile=xxxcodenamexxx --output=text sts get-caller-identity --query "Account"
+aws --profile=testyama --output=text sts get-caller-identity --query "Account"
 ```
 
 以下のような内容が表示される。
@@ -144,7 +144,7 @@ const envGlobal = {
 #### 必要なパッケージのインストール
 
 ```
-cd ~/Documents/repos/xxxcodenamexxx/infrastructures
+cd ~/Documents/repos/testyama/infrastructures
 pnpm install
 ```
 
@@ -153,8 +153,8 @@ pnpm install
 先に設定したインフラコード内で指定されたＡＷＳ環境（ＡＷＳアカウントおよびリージョン）に対してＣＤＫデプロイに必要な各種セットアップを実施する。
 
 ```
-cd ~/Documents/repos/xxxcodenamexxx/infrastructures
-pnpm exec cdk bootstrap --profile=xxxcodenamexxx
+cd ~/Documents/repos/testyama/infrastructures
+pnpm exec cdk bootstrap --profile=testyama
 ```
 
 #### DNS サーバの発行、ドメインの指定
@@ -167,7 +167,7 @@ pnpm exec cdk bootstrap --profile=xxxcodenamexxx
 ##### Hosted Zone を作成し、example.lineminiapps.com 管理者に通知
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxInitStack
+pnpm exec cdk deploy --profile testyama TestyamaInitStack
 ```
 
 - [AWS Console](https://console.aws.amazon.com/console/home?region=ap-northeast-1) で [Route53](https://console.aws.amazon.com/route53/v2/home) を開き、[HostedZone](https://console.aws.amazon.com/route53/v2/hostedzones) から `example.lineminiapps.com` のホストゾーン名とネームサーバーを確認する。
@@ -355,7 +355,7 @@ ComputeStack を削除してからデプロイし直す方法が安全ではあ�
 4. infrastructures ディレクトリにて以下 `env` に応じたコマンドを実行する（この時差分が発生することがある）
 5. ComputeStack 作成時に Slack の `#lineminiapps_alert` に通知メール着信確認のメールが届くので `Confirm Subscription` のリンクをクリックすること。また「済」リアクションで作業が完了していることを知らせる。
 6. [ＲＤＳ管理コンソール](https://console.aws.amazon.com/rds/home?region=ap-northeast-1#databases:)画面を確認する
-  - xxxcodenamexxxprd や xxxcodenamexxxdev 等で始まる各環境毎に１つしかクラスターが存在しないこと（特に prd 環境）
+  - testyamaprd や testyamadev 等で始まる各環境毎に１つしかクラスターが存在しないこと（特に prd 環境）
   - 特に `prd` 環境では削除保護が設定されているため、旧リソースを削除できずに多重デプロイとなるリスクがある
 
 > [!CAUTION]
@@ -368,25 +368,25 @@ ComputeStack を削除してからデプロイし直す方法が安全ではあ�
 - 例）snd 環境構築
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxSndNetworkStack xxxcapitalizedcodenamexxxSndGlobalCertificateStack xxxcapitalizedcodenamexxxSndDataStack xxxcapitalizedcodenamexxxSndComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaSndNetworkStack TestyamaSndGlobalCertificateStack TestyamaSndDataStack TestyamaSndComputeStack
 ```
 
 - 例）dev 環境構築
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxDevNetworkStack xxxcapitalizedcodenamexxxDevGlobalCertificateStack xxxcapitalizedcodenamexxxDevDataStack xxxcapitalizedcodenamexxxDevComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaDevNetworkStack TestyamaDevGlobalCertificateStack TestyamaDevDataStack TestyamaDevComputeStack
 ```
 
 - 例）stg 環境構築
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxStgNetworkStack xxxcapitalizedcodenamexxxStgGlobalCertificateStack xxxcapitalizedcodenamexxxStgDataStack xxxcapitalizedcodenamexxxStgComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaStgNetworkStack TestyamaStgGlobalCertificateStack TestyamaStgDataStack TestyamaStgComputeStack
 ```
 
 - 例）prd 環境構築
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxPrdNetworkStack xxxcapitalizedcodenamexxxPrdGlobalCertificateStack xxxcapitalizedcodenamexxxPrdDataStack xxxcapitalizedcodenamexxxPrdComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaPrdNetworkStack TestyamaPrdGlobalCertificateStack TestyamaPrdDataStack TestyamaPrdComputeStack
 ```
 
 - infrastructures/cdk.context.json が生成されるため、これをコミットしておく
@@ -394,7 +394,7 @@ pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxPrdNetwor
 - デプロイした環境に対応するブランチが作成されている場合、しばらくしてアプリケーションのデプロイが始まる
 - 対応するブランチが無くても main ブランチから対応するブランチを切ると、アプリケーションのデプロイが始まる
 - アプリケーションのデプロイ状況については [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines?region=ap-northeast-1) 管理コンソールを確認すること
-  - どの環境のパイプラインかは xxxcapitalizedcodenamexxxPrd（prd 環境）や xxxcapitalizedcodenamexxxDev（dev 環境）で始まる名前で見分ける
+  - どの環境のパイプラインかは TestyamaPrd（prd 環境）や TestyamaDev（dev 環境）で始まる名前で見分ける
 
 ## 【初回】ＷａｆＣｈａｒｍ利用
 
@@ -414,21 +414,21 @@ const stackConfiguration = {
 その後デプロイします。修正した内容はコミットしておいてください。
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxWafCharmStack
+pnpm exec cdk deploy --profile testyama TestyamaWafCharmStack
 ```
 
-デプロイ完了後、[ＩＡＭロールの管理画面](https://console.aws.amazon.com/iam/home#/roles)にて `xxxcapitalizedcodenamexxxWafCharmStack-WafCharmRoleConstructWafChar-XXXXXXXXXXXX` というロールの詳細を表示、先ほど参照したＷａｆＣｈａｒｍの管理コンソールの画面の続きにある「`IAM RoleのARNを入力し、「検証」ボタンを押下してください。`」の指示にしたがって当該ＩＡＭロールのＡＲＮを入力、「検証」ボタンを押してください。
-「OK」の表示が出れば設定は完了です。「次のステップへ」で設定を確定してください。またこの時、クレデンシャル名については「`xxxcapitalizedcodenamexxxWafCharmStack`」としてください（後述）。
+デプロイ完了後、[ＩＡＭロールの管理画面](https://console.aws.amazon.com/iam/home#/roles)にて `TestyamaWafCharmStack-WafCharmRoleConstructWafChar-XXXXXXXXXXXX` というロールの詳細を表示、先ほど参照したＷａｆＣｈａｒｍの管理コンソールの画面の続きにある「`IAM RoleのARNを入力し、「検証」ボタンを押下してください。`」の指示にしたがって当該ＩＡＭロールのＡＲＮを入力、「検証」ボタンを押してください。
+「OK」の表示が出れば設定は完了です。「次のステップへ」で設定を確定してください。またこの時、クレデンシャル名については「`TestyamaWafCharmStack`」としてください（後述）。
 
 次に[ＷＡＦ Ｃｏｎｆｉｇ管理画面](https://console.wafcharm.com/ja/aws/waf-configs)にて、ＡＷＳ ＷＡＦ連携のための設定を行ってください。
 
 - `ＷｅｂＡＣＬ選択`画面
-  - クレデンシャル： `xxxcapitalizedcodenamexxxWafCharmStack`
+  - クレデンシャル： `TestyamaWafCharmStack`
   - リージョン： `ap-northeast-1`
   - 「`WebACL取得`」ボタンを押す
   - 表示されたＷｅｂＡＣＬにチェックを入れて「次のステップへ」ボタンを押す
 - `基本設定`画面
-  - WAF Config名： `xxxcapitalizedcodenamexxxGlobalWebACL-XXXXXXXXXXXX` （デフォルト名にプロジェクト名を追加）
+  - WAF Config名： `TestyamaGlobalWebACL-XXXXXXXXXXXX` （デフォルト名にプロジェクト名を追加）
   - Ruleポリシー： `Advanced`
   - Credential Store： 先に設定したもの
   - 「次のステップへ」ボタンを押す
@@ -459,25 +459,25 @@ infrastructures ディレクトリでコマンドを実行する。
 - 例）snd 環境で compute-stack.ts を修正してデプロイする場合
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxSndComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaSndComputeStack
 ```
 
 - 例）dev 環境で compute-stack.ts を修正してデプロイする場合
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxDevComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaDevComputeStack
 ```
 
 - 例）stg 環境で compute-stack.ts を修正してデプロイする場合
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxStgComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaStgComputeStack
 ```
 
 - 例）prd 環境で compute-stack.ts を修正してデプロイする場合
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxPrdComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaPrdComputeStack
 ```
 
 # 【運用】サーバー増強
@@ -558,7 +558,7 @@ pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxPrdComput
 - デプロイ後は次のコマンドで設定を確認する。
 
 ```
-aws --profile=xxxcodenamexxx application-autoscaling describe-scheduled-actions --service-namespace ecs
+aws --profile=testyama application-autoscaling describe-scheduled-actions --service-namespace ecs
 ```
 
 ## タスク実行数の確認方法
@@ -586,35 +586,35 @@ Amazon Elastic Container Service > クラスター > prd クラスター > サ�
 ## snd のリソースを削除
 
 ```
-pnpm exec cdk destroy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxSndComputeStack xxxcapitalizedcodenamexxxSndDataStack xxxcapitalizedcodenamexxxSndGlobalCertificateStack xxxcapitalizedcodenamexxxSndNetworkStack
+pnpm exec cdk destroy --profile testyama TestyamaSndComputeStack TestyamaSndDataStack TestyamaSndGlobalCertificateStack TestyamaSndNetworkStack
 ```
 
 cdk では削除できないリソースがあるため、Web コンソールより手動で削除する
 
 - [CloudWatch](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1) > [ロググループ](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups)
-  - xxxcapitalizedcodenamexxxSnd を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
+  - TestyamaSnd を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
 
 ## dev のリソースを削除
 
 ```
-pnpm exec cdk destroy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxDevComputeStack xxxcapitalizedcodenamexxxDevDataStack xxxcapitalizedcodenamexxxDevGlobalCertificateStack xxxcapitalizedcodenamexxxDevNetworkStack
+pnpm exec cdk destroy --profile testyama TestyamaDevComputeStack TestyamaDevDataStack TestyamaDevGlobalCertificateStack TestyamaDevNetworkStack
 ```
 
 cdk では削除できないリソースがあるため、Web コンソールより手動で削除する
 
 - [CloudWatch](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1) > [ロググループ](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups)
-  - xxxcapitalizedcodenamexxxDev を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
+  - TestyamaDev を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
 
 ## stg のリソースを削除
 
 ```
-pnpm exec cdk destroy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxStgComputeStack xxxcapitalizedcodenamexxxStgDataStack xxxcapitalizedcodenamexxxStgGlobalCertificateStack xxxcapitalizedcodenamexxxStgNetworkStack
+pnpm exec cdk destroy --profile testyama TestyamaStgComputeStack TestyamaStgDataStack TestyamaStgGlobalCertificateStack TestyamaStgNetworkStack
 ```
 
 cdk では削除できないリソースがあるため、Web コンソールより手動で削除する
 
 - [CloudWatch](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1) > [ロググループ](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups)
-  - xxxcapitalizedcodenamexxxStg を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
+  - TestyamaStg を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
 
 ## prd のリソースを削除
 
@@ -622,10 +622,10 @@ cdk では削除できないリソースがあるため、Web コンソールよ
 
 - [CloudFormation](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1) > [スタック](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks)
   - 以下の削除保護を無効にする
-    - xxxcapitalizedcodenamexxxPrdComputeStack
-    - xxxcapitalizedcodenamexxxPrdDataStack
-    - xxxcapitalizedcodenamexxxPrdGlobalCertificateStack
-    - xxxcapitalizedcodenamexxxPrdNetworkStack
+    - TestyamaPrdComputeStack
+    - TestyamaPrdDataStack
+    - TestyamaPrdGlobalCertificateStack
+    - TestyamaPrdNetworkStack
 
 ### prd の RDS のバックアップおよび削除（手動）
 
@@ -639,13 +639,13 @@ cdk では削除できないリソースがあるため、Web コンソールよ
 ### prd のリソースを削除
 
 ```
-pnpm exec cdk destroy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxPrdComputeStack xxxcapitalizedcodenamexxxPrdDataStack xxxcapitalizedcodenamexxxPrdGlobalCertificateStack xxxcapitalizedcodenamexxxPrdNetworkStack
+pnpm exec cdk destroy --profile testyama TestyamaPrdComputeStack TestyamaPrdDataStack TestyamaPrdGlobalCertificateStack TestyamaPrdNetworkStack
 ```
 
 cdk では削除できないリソースがあるため、Web コンソールより手動で削除する
 
 - [CloudWatch](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1) > [ロググループ](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups)
-  - xxxcapitalizedcodenamexxxPrd を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
+  - TestyamaPrd を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
 
 ## 共有リソースの削除
 
@@ -653,19 +653,19 @@ cdk では削除できないリソースがあるため、Web コンソールよ
 
 - [CloudFormation](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1) > [スタック](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks)
   - 以下の削除保護を無効にする
-    - xxxcapitalizedcodenamexxxInitStack
+    - TestyamaInitStack
 
 ### 共有リソースの削除
 
 ```
-pnpm exec cdk destroy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxInitStack
+pnpm exec cdk destroy --profile testyama TestyamaInitStack
 ```
 
 cdk では削除できないリソースがあるため、Web コンソールより手動で削除する
 
 - [CloudWatch](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1) > [ロググループ](https://console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups)
-  - xxxcapitalizedcodenamexxxInitStack を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
-  - `/aws/chatbot/xxxcodenamexxx_alert` および `/aws/chatbot/xxxcodenamexxx_info` ロググループを削除（`us-east-1` リージョン）
+  - TestyamaInitStack を含むロググループを削除（`ap-northeast-1`、`us-east-1` リージョンともに）
+  - `/aws/chatbot/testyama_alert` および `/aws/chatbot/testyama_info` ロググループを削除（`us-east-1` リージョン）
 
 ### その他の共有リソース削除手順
 
@@ -764,7 +764,7 @@ brew install awscli
 #### 設定をしてない場合は設定
 
 ```
-aws configure --profile xxxcodenamexxx
+aws configure --profile testyama
 ```
 
 ```
@@ -774,7 +774,7 @@ Default region name [None]: ap-northeast-1
 Default output format [None]:
 ```
 
-以下、xxxcodenamexxx という profile で credentials が保存されている前提で進める。
+以下、testyama という profile で credentials が保存されている前提で進める。
 
 ### session-manager-plugin
 
@@ -811,52 +811,52 @@ cd ~/.aws
 例：snd に接続する場合
 
 ```
-sh ecsfw.sh xxxcodenamexxx-snd
+sh ecsfw.sh testyama-snd
 ```
 
 例：dev に接続する場合
 
 ```
-sh ecsfw.sh xxxcodenamexxx-dev
+sh ecsfw.sh testyama-dev
 ```
 
 例：stg に接続する場合
 
 ```
-sh ecsfw.sh xxxcodenamexxx-stg
+sh ecsfw.sh testyama-stg
 ```
 
 例：prd に接続する場合
 
 ```
-sh ecsfw.sh xxxcodenamexxx-prd
+sh ecsfw.sh testyama-prd
 ```
 
 Control + C で終了
 
 ## MySQL Workbench で接続
 
-- xxxcodenamexxx-snd, xxxcodenamexxx-dev, xxxcodenamexxx-stg, xxxcodenamexxx-prd の接続情報をそれぞれ作成
+- testyama-snd, testyama-dev, testyama-stg, testyama-prd の接続情報をそれぞれ作成
   - Hostname: 127.0.0.1
   - Port: 3306
   - Username & Password:
     - [AWS Console](https://console.aws.amazon.com/console/home?region=ap-northeast-1) > [Secrets Manager](https://console.aws.amazon.com/secretsmanager/landing?region=ap-northeast-1) > [シークレット](https://console.aws.amazon.com/secretsmanager/listsecrets?region=ap-northeast-1) > DataStack で検索
-    - xxxcapitalizedcodenamexxx[環境名]DataStackRdsClust-[文字列] となっているシークレット > シークレットの値
+    - Testyama[環境名]DataStackRdsClust-[文字列] となっているシークレット > シークレットの値
     - シークレットの値を取得する > username, password
 
 ## ecsconfig の仕様
 
 ```
 {
-    "xxxcodenamexxx-dev":{
-        "profile":"xxxcodenamexxx",
+    "testyama-dev":{
+        "profile":"testyama",
         "region":"ap-northeast-1",
-        "cluster":"xxxcapitalizedcodenamexxxDev",
+        "cluster":"TestyamaDev",
         "family":"EnvComputeStackFargateApiTask",
-        "cluster_id":"xxxcapitalizedcodenamexxxDevNetworkStack-VpcMainEcsClusterXXXXXXXX-XXXXXXXXXXXX",
-        "family_id":"xxxcapitalizedcodenamexxxDevComputeStackFargateApiTaskXXXXXXXXXXX",
+        "cluster_id":"TestyamaDevNetworkStack-VpcMainEcsClusterXXXXXXXX-XXXXXXXXXXXX",
+        "family_id":"TestyamaDevComputeStackFargateApiTaskXXXXXXXXXXX",
         "name":"app",
-        "rdshost":"xxxcodenamexxxdatastack-rdsclusterXXXXXXXX-YYYYYYYYYYYY.cluster-ro-ZZZZZZZZZZZZ.ap-northeast-1.rds.amazonaws.com",
+        "rdshost":"testyamadatastack-rdsclusterXXXXXXXX-YYYYYYYYYYYY.cluster-ro-ZZZZZZZZZZZZ.ap-northeast-1.rds.amazonaws.com",
         "rdsport":"3306",
         "localport":"3306"
     }
@@ -865,7 +865,7 @@ Control + C で終了
 
 - `profile`： ＡＷＳプロファイル名です。事前にアクセスキーを設定しておく必要があります。
 - `region`： リージョンを指定します。大抵は `ap-northeast-1` になります。
-- `cluster`： ＥＣＳクラスター名（一部）を指定します。統一設計では xxxcapitalizedcodenamexxxEnv となります（Env は Prd、Stg、Dev 等の環境名に置き換えてください）。
+- `cluster`： ＥＣＳクラスター名（一部）を指定します。統一設計では TestyamaEnv となります（Env は Prd、Stg、Dev 等の環境名に置き換えてください）。
 - `family`： ＥＣＳクラスターのファミリー名（一部）を指定します。統一設計では `EnvComputeStackFargateApiTask` 固定（Env は環境名に…）になります。
 - `cluster_id`と `family_id`： 上記内容のＩＤとなります。指定が無い場合は、`cluster`と`family`からＩＤを検索します。この指定があると、検索を行わないのでより早く動作するようになります（キャッシュ的位置付）。
 - `name`： 統一設計では `app` 固定になります。
@@ -879,16 +879,16 @@ ecsfw.sh の目的をわかりやすく `rdshost`、`rdsport` としています
 
 ```
 {
-    "xxxcodenamexxx-snd":{
+    "testyama-snd":{
         :
     },
-    "xxxcodenamexxx-dev":{
+    "testyama-dev":{
         :
     },
-    "xxxcodenamexxx-stg":{
+    "testyama-stg":{
         :
     },
-    "xxxcodenamexxx-prd":{
+    "testyama-prd":{
         :
     }
 }
@@ -907,13 +907,13 @@ https://console.aws.amazon.com/servicequotas/home/services/サービスコード
 サービスコード一覧は下記の手順で取得できる。
 
 ```
-aws service-quotas --profile xxxcodenamexxx list-services
+aws service-quotas --profile testyama list-services
 ```
 
 サービスコードに該当するクォータコードは下記の手順で取得できる。
 
 ```
-aws service-quotas --profile xxxcodenamexxx list-service-quotas --service-code=サービスコード
+aws service-quotas --profile testyama list-service-quotas --service-code=サービスコード
 ```
 
 # ＡＷＳ ＳＳＯ（シングルサインオン）
@@ -945,7 +945,7 @@ aws configure sso --use-device-code
 - macOS であればそのまま認証しても良いが、ブラウザが存在しない環境（サーバー）では、無理に認証を通しても処理が進まない点に留意。
 
 ```
-SSO session name (Recommended): xxxcodenamexxx ※ここのキーワードは固定
+SSO session name (Recommended): testyama ※ここのキーワードは固定
 SSO start URL [None]: https://d-XXXXXXXXXX.awsapps.com/start/ ※各担当者にメールで通知されたＵＲＬ
 SSO region [None]: ap-northeast-1 ※ここのキーワードは固定
 SSO registration scopes [sso:account:access]: ※ここのキーワードは固定（デフォルトのまま）
@@ -977,10 +977,10 @@ The only role available to you is: [XXXXXXXXXXXXXXXXXXXXXXXXX
 Using the role name "[XXXXXXXXXXXXXXXXXXXXXXXXX"
 CLI default client Region [None]: ap-northeast-1 ※ここのキーワードは固定
 CLI default output format [None]: json ※ここのキーワードは固定
-Profile name [XXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXX]: xxxcodenamexxx-prd ※ここのキーワードは用途に応じて指定
+Profile name [XXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXX]: testyama-prd ※ここのキーワードは用途に応じて指定
 To use this profile, specify the profile name using --profile, as shown:
 
-aws sts get-caller-identity --profile xxxcodenamexxx-prd
+aws sts get-caller-identity --profile testyama-prd
 ```
 
 本コマンドの実行が完了し、セッションキーが発行＝ログイン状態となる。
@@ -988,10 +988,10 @@ aws sts get-caller-identity --profile xxxcodenamexxx-prd
 
 ## AWS CLI の設定（二回目以降）
 
-初回の設定が完了している場合（`~/.aws/config` の `[sso-session xxxcodenamexxx]` セクション）、下記のコマンドを実行するだけで最小限の手間でセッションキーが発行される＝ログイン状態になる。
+初回の設定が完了している場合（`~/.aws/config` の `[sso-session testyama]` セクション）、下記のコマンドを実行するだけで最小限の手間でセッションキーが発行される＝ログイン状態になる。
 
 ```
-aws sso login --sso-session=xxxcodenamexxx --use-device-code
+aws sso login --sso-session=testyama --use-device-code
 ```
 
 - `--use-device-code` が不要（エラーになる）なバージョンがある。その場合このオプションの指定は不要。
@@ -1027,18 +1027,18 @@ aws sso logout
 ＳＳＯセッションのための設定例としては下記の通りとなる。こちらを参考に `aws configure sso` せずに `~/.aws/config` に直接記述しても良い。
 
 ```
-[sso-session xxxcodenamexxx]
+[sso-session testyama]
 sso_start_url = https://d-XXXXXXXXXX.awsapps.com/start/
 sso_region = ap-northeast-1
 sso_registration_scopes = sso:account:access
 ```
 
-またＳＳＯセッションを利用した複数ＡＷＳアカウントへのログインについては、目的に応じて `xxxcodenamexxx` に対して `snd`、`dev`、`stg`、`prd` をプレフィックスにつけて各ＡＷＳアカウントの区別をつける。
+またＳＳＯセッションを利用した複数ＡＷＳアカウントへのログインについては、目的に応じて `testyama` に対して `snd`、`dev`、`stg`、`prd` をプレフィックスにつけて各ＡＷＳアカウントの区別をつける。
 `sso_role_name` についてはＳＳＯログイン時に、各ＡＷＳアカウントへ遷移する際に指定があるため、そちらを参照すること（そこまで含めて管理者側で設定される）。
 
 ```
-[profile xxxcodenamexxx-prd]
-sso_session = xxxcodenamexxx
+[profile testyama-prd]
+sso_session = testyama
 sso_account_id = XXXXXXXXXXXX
 sso_role_name = AAAAAAAAAAAAAAAAA
 region = ap-northeast-1
@@ -1046,8 +1046,8 @@ output = json
 ```
 
 ```
-[profile xxxcodenamexxx-stg]
-sso_session = xxxcodenamexxx
+[profile testyama-stg]
+sso_session = testyama
 sso_account_id = YYYYYYYYYYYY
 sso_role_name = AAAAAAAAAAAAAAAAA
 region = ap-northeast-1
@@ -1055,8 +1055,8 @@ output = json
 ```
 
 ```
-[profile xxxcodenamexxx-dev]
-sso_session = xxxcodenamexxx
+[profile testyama-dev]
+sso_session = testyama
 sso_account_id = ZZZZZZZZZZZZ
 sso_role_name = AAAAAAAAAAAAAAAAA
 region = ap-northeast-1
@@ -1083,7 +1083,7 @@ output = json
   - 手動設定による（ＡＷＳアカウント削除時には削除のこと）
     - `DockerHubSecret`： 手動設定につき
   - 各環境（prd, stg, dev, snd）毎（DataStack 発行）
-    - `xxxcapitalizedcodenamexxx環境DataStackRdsClu-XXXXXXXXXXXX`
+    - `Testyama環境DataStackRdsClu-XXXXXXXXXXXX`
   - 各環境（prd, stg, dev, snd）毎（ComputeStack 発行） ※どの環境の設定かは「説明」覧を見ること
     - `CookieSecretXXXXXXXX-YYYYYYYYYYYY`
     - `SessionSecretXXXXXXXX-YYYYYYYYYYYY`
@@ -1095,28 +1095,28 @@ output = json
   - ＣＤＫの初期デプロイによる（InitStack 発行）
     - `/cdk-bootstrap/XXXXXXXXX/version` ※`us-east-1` リージョンに「も」あるので留意
   - 各環境（prd, stg, dev, snd）毎（DataStack 発行）
-    - `/cdk/exports/xxxcapitalizedcodenamexxx環境DataStack/xxxcapitalizedcodenamexxx環境GlobalCertificateStackuseast1RefCertificateXXXXXXXXXXXXXXXX`
+    - `/cdk/exports/Testyama環境DataStack/Testyama環境GlobalCertificateStackuseast1RefCertificateXXXXXXXXXXXXXXXX`
   - 各環境（prd, stg, dev, snd）毎（ComputeStack 発行）
-    - `/xxxcodenamexxx/環境/release-tag/api`
-    - `/xxxcodenamexxx/環境/release-tag/web`
-    - `/xxxcodenamexxx/環境/release-tag/web-nginx`
+    - `/testyama/環境/release-tag/api`
+    - `/testyama/環境/release-tag/web`
+    - `/testyama/環境/release-tag/web-nginx`
 - [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines?region=ap-northeast-1)
   - 各環境（prd, stg, dev, snd）毎
-    - `xxxcapitalizedcodenamexxx環境ComputeStack-PipelineXXXXXXXX-YYYYYYYYYYYY`
+    - `Testyama環境ComputeStack-PipelineXXXXXXXX-YYYYYYYYYYYY`
 - [Amazon ECR](https://console.aws.amazon.com/ecr/private-registry/repositories?region=ap-northeast-1)
   - ＣＤＫの初期デプロイによる（InitStack 発行）
     - `cdk-XXXXXXXXX-container-assets-ＡＷＳアカウントＩＤ-ap-northeast-1`
     - `cdk-XXXXXXXXX-container-assets-ＡＷＳアカウントＩＤ-us-east-1` ※`us-east-1` リージョンである点に留意
   - 各環境（prd, stg, dev, snd）毎
-    - `xxxcodenamexxx環境datastack-ecrapiapprepositoryXXXXXXXX-YYYYYYYYYYYY`
-    - `xxxcodenamexxx環境datastack-ecrwebapprepositorXXXXXXXXX-YYYYYYYYYYYY`
-    - `xxxcodenamexxx環境datastack-ecrwebnginxrepositoryXXXXXXXX-YYYYYYYYYYYY`
+    - `testyama環境datastack-ecrapiapprepositoryXXXXXXXX-YYYYYYYYYYYY`
+    - `testyama環境datastack-ecrwebapprepositorXXXXXXXXX-YYYYYYYYYYYY`
+    - `testyama環境datastack-ecrwebnginxrepositoryXXXXXXXX-YYYYYYYYYYYY`
 - [S3](https://console.aws.amazon.com/s3/home?bucketType=general)
   - ＣＤＫの初期デプロイによる（`cdk bootstrap` の実行）
     - `cdk-xxxxxxxxx-assets-yyyyyyyyyyyy-ap-northeast-1`
     - `cdk-xxxxxxxxx-assets-yyyyyyyyyyyy-us-east-1`
   - ＷａｆＣｈａｒｍ対応による（WafCharmStack 発行）
-    - `aws-waf-logs-xxxcodenamexxxwafcharmstack-ＡＷＳアカウントＩＤ-ap-northeast-1`
+    - `aws-waf-logs-testyamawafcharmstack-ＡＷＳアカウントＩＤ-ap-northeast-1`
 
 # インフラ更新にともなう環境再構築
 
@@ -1127,7 +1127,7 @@ output = json
 - 更新手順としては下記の手順を実施する。
 
 ```
-cd ~/Documents/repos/xxxcodenamexxx/infrastructures
+cd ~/Documents/repos/testyama/infrastructures
 rm -rf node_modules
 pnpm install
 ```
@@ -1141,13 +1141,13 @@ pnpm exec cdk diff
 - 変更差分の適用は下記の手順を実施する。
 
 ```
-pnpm exec cdk bootstrap --profile=xxxcodenamexxx --region ap-northeast-1
-pnpm exec cdk bootstrap --profile=xxxcodenamexxx --region us-east-1
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxInitStack
+pnpm exec cdk bootstrap --profile=testyama --region ap-northeast-1
+pnpm exec cdk bootstrap --profile=testyama --region us-east-1
+pnpm exec cdk deploy --profile testyama TestyamaInitStack
 ```
 
 - 各環境差分の適用については下記の通り行う（本例では dev 環境のみを例示）。
 
 ```
-pnpm exec cdk deploy --profile xxxcodenamexxx xxxcapitalizedcodenamexxxDevNetworkStack xxxcapitalizedcodenamexxxDevGlobalCertificateStack xxxcapitalizedcodenamexxxDevDataStack xxxcapitalizedcodenamexxxDevComputeStack
+pnpm exec cdk deploy --profile testyama TestyamaDevNetworkStack TestyamaDevGlobalCertificateStack TestyamaDevDataStack TestyamaDevComputeStack
 ```

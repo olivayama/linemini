@@ -45,12 +45,12 @@ export const appConfig = {
   get cookie() {
     return {
       user: {
-        name: process.env.COOKIE_NAME ?? 'xxxcodenamexxx:sess',
+        name: process.env.COOKIE_NAME ?? 'testyama:sess',
         maxAge: parseInt(process.env.COOKIE_MAX_AGE ?? '31536000', 10), // 60 * 60 * 24 * 365
         password: process.env.COOKIE_PASSWORD ?? 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       },
       admin: {
-        name: process.env.COOKIE_ADMIN_NAME ?? 'xxxcodenamexxx:sess-admin',
+        name: process.env.COOKIE_ADMIN_NAME ?? 'testyama:sess-admin',
         maxAge: parseInt(process.env.COOKIE_ADMIN_MAX_AGE ?? '31536000', 10), // 60 * 60 * 24 * 365
         password: process.env.COOKIE_ADMIN_PASSWORD ?? 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       },
