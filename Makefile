@@ -1,6 +1,6 @@
 .PHONY: gen
 
-CODE_NAME := xxxcodenamexxx
+CODE_NAME := testyama
 
 ## 各タスクのコメントフォーマット
 
